@@ -1,0 +1,45 @@
+/* COLOR CODES: 
+#501F3A
+#CB2D6F
+#CCCCCC
+#14A098
+#0F292F
+*/
+
+body {
+    background-color: #0f292f;
+    margin: 0px;
+}
+
+header {
+    background-color: #CB2D6F;
+    margin: 10px;
+    height: 70px;
+    display: flex;
+}
+
+#logo {
+    height: 50px;
+    width: 50px;
+    margin: 10px;
+    padding: 2px;
+    align-self: center;
+}
+
+nav.header-nav {
+    margin: 10px;
+    padding: 2px;
+    display: flex;
+    flex-flow: row wrap;
+    align-content: center;
+}
+
+.menu_opt {
+    margin: 5px;
+    font-family: Avantgarde, TeX Gyre Adventor, URW Gothic L, sans-serif;
+    color: #CCCCCC;
+}
+
+.menu_opt:hover {
+    color: #501F3A;
+}
