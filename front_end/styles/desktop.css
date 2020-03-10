@@ -18,6 +18,7 @@ header {
 
     margin: 30px 0px 30px 0px;
     padding-right: 100px;
+    align-items: center;
     display: flex;
     max-height: 70%;
     background: linear-gradient(90deg, rgba(20,160,152,0.5018382352941176) 0%, rgba(20,160,152,0.29735644257703087) 20%, 
@@ -29,12 +30,11 @@ header {
 #logo {
     height: 50px;
     width: 50px;
-    margin: 10px 10px 10px 15px;
-    align-self: center;
+    margin: 0px 10px;
 }
 
 nav.header-nav {
-    margin: 10px;
+    margin: 5px;
     display: flex;
     flex-flow: row wrap;
     text-transform: uppercase;
@@ -44,51 +44,50 @@ nav.header-nav {
 nav.header-nav ul {
     align-content: center;    
     list-style: none;
+    display: table;
     padding: 0px;
 }
 
-nav.header-nav ul li {
-    display: inline-block;
-    margin: 5px 0px;
-}
-nav.header-nav ul li a {
-    text-decoration: none;
-    font-family: 'Segoe UI', sans-serif;
-    color: #CCCCCC;
-    text-transform: uppercase;
-    margin: 0px 10px;
+nav.header-nav li { 
+    display: table-cell; 
+    position: relative; 
+    padding: 0px 10px;
 }
 
-nav.header-nav ul li a,
-nav.header-nav ul li a:after,
-nav.header-nav ul li a:before {
-    transition: all .5s;
+nav.header-nav li a {
+    color: #cccccc;
+    padding: 5px 0px;
+    text-transform: uppercase;
+    text-decoration: none;
+    font-family: 'Segoe UI', sans-serif;
+    display: inline-block;
+    position: relative;
 }
-nav.header-nav ul li a:hover {
+nav.header-nav a:after {    
+    background: none repeat scroll 0 0 transparent;
+    bottom: 0;
+    content: "";
+    display: block;
+    height: 1px;
+    left: 50%;
+    position: absolute;
+    background: #CB2D6F;
+    transition: width 0.3s ease 0s, left 0.3s ease 0s;
+    width: 0;
+}
+
+nav.header-nav ul li a:hover{
     color: #CB2D6F;
 }
 
-.item2:hover ~ hr {
-    margin-left: 16%;
+nav.header-nav a:hover:after { 
+    width: 100%; 
+    left: 0; 
+    
 }
-  
-.item3:hover ~ hr {
-    margin-left: 39%;
-}
-  
-.item4:hover ~ hr {
-    margin-left: 61%;
-}
-.item5:hover ~ hr {
-    margin-left: 81%;
-}
-  
-hr {
 
-    height: .15rem;
-    width: 16%;
-    margin: 0;
-    background: #CB2D6F;
-    border: none;
-    transition: .3s ease-in-out;
+nav.header-nav ul li a,
+nav.header-nav ul li a:before {
+    transition: all .5s;
 }
+
