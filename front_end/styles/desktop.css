@@ -9,37 +9,86 @@
 body {
     background-color: #0f292f;
     margin: 0px;
+    display: flex;
+    flex-flow: row wrap;
+    
 }
 
 header {
-    background-color: #CB2D6F;
-    margin: 10px;
-    height: 70px;
+
+    margin: 30px 0px 30px 0px;
+    padding-right: 100px;
     display: flex;
+    max-height: 70%;
+    background: linear-gradient(90deg, rgba(20,160,152,0.5018382352941176) 0%, rgba(20,160,152,0.29735644257703087) 20%, 
+    rgba(20,160,152,0.11528361344537819) 51%, rgba(20,160,152,0) 85%);
+    background-blend-mode: overlay;
+    
 }
 
 #logo {
     height: 50px;
     width: 50px;
-    margin: 10px;
-    padding: 2px;
+    margin: 10px 10px 10px 15px;
     align-self: center;
 }
 
 nav.header-nav {
     margin: 10px;
-    padding: 2px;
     display: flex;
     flex-flow: row wrap;
+    text-transform: uppercase;
     align-content: center;
 }
 
-.menu_opt {
-    margin: 5px;
-    font-family: Avantgarde, TeX Gyre Adventor, URW Gothic L, sans-serif;
-    color: #CCCCCC;
+nav.header-nav ul {
+    align-content: center;    
+    list-style: none;
+    padding: 0px;
 }
 
-.menu_opt:hover {
-    color: #501F3A;
+nav.header-nav ul li {
+    display: inline-block;
+}
+nav.header-nav ul li a {
+    text-decoration: none;
+    font-family: 'Segoe UI', sans-serif;
+    color: #CCCCCC;
+    text-transform: uppercase;
+    margin: 0 10px;
+}
+
+nav.header-nav ul li a,
+nav.header-nav ul li a:after,
+nav.header-nav ul li a:before {
+    transition: all .5s;
+}
+nav.header-nav ul li a:hover {
+    color: #CB2D6F;
+}
+
+.item2:hover ~ hr {
+    margin-left: 15%;
+    margin-right: 50%;
+}
+  
+.item3:hover ~ hr {
+    margin-left: 45%;
+    margin-right: 70%;
+}
+  
+.item4:hover ~ hr {
+    margin-left: 60%;
+}
+.item5:hover ~ hr {
+    margin-left: 60%;
+}
+  
+hr {
+    height: .25rem;
+    width: 15%;
+    margin: 0;
+    background: #CB2D6F;
+    border: none;
+    transition: .3s ease-in-out;
 }
