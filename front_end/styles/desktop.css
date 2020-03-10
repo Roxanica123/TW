@@ -28,9 +28,10 @@ header {
 }
 
 #logo {
-    height: 50px;
-    width: 50px;
-    margin: 0px 10px;
+    padding-top: 2px;
+    align-self: center;
+    max-height: 55px;
+    margin: 0px 5px 0px 10px;
 }
 
 nav.header-nav {
