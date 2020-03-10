@@ -49,13 +49,14 @@ nav.header-nav ul {
 
 nav.header-nav ul li {
     display: inline-block;
+    margin: 5px 0px;
 }
 nav.header-nav ul li a {
     text-decoration: none;
     font-family: 'Segoe UI', sans-serif;
     color: #CCCCCC;
     text-transform: uppercase;
-    margin: 0 10px;
+    margin: 0px 10px;
 }
 
 nav.header-nav ul li a,
@@ -68,25 +69,24 @@ nav.header-nav ul li a:hover {
 }
 
 .item2:hover ~ hr {
-    margin-left: 15%;
-    margin-right: 50%;
+    margin-left: 16%;
 }
   
 .item3:hover ~ hr {
-    margin-left: 45%;
-    margin-right: 70%;
+    margin-left: 39%;
 }
   
 .item4:hover ~ hr {
-    margin-left: 60%;
+    margin-left: 61%;
 }
 .item5:hover ~ hr {
-    margin-left: 60%;
+    margin-left: 81%;
 }
   
 hr {
-    height: .25rem;
-    width: 15%;
+
+    height: .15rem;
+    width: 16%;
     margin: 0;
     background: #CB2D6F;
     border: none;
