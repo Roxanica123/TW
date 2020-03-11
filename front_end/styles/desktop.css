@@ -19,10 +19,16 @@ body {
 
 #map {
   display: block;
-  background: #000;
   border: none;
   height: 100vh;
   width: 100vw;
+}
+
+#logo {
+  padding-top: 2px;
+  align-self: center;
+  max-height: 55px;
+  margin: 0px 5px 0px 10px;
 }
 
 header {
@@ -44,12 +50,15 @@ header {
   background-blend-mode: overlay;
 }
 
-#logo {
-  padding-top: 2px;
-  align-self: center;
-  max-height: 55px;
-  margin: 0px 5px 0px 10px;
+footer{
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  margin: 0px 0px 30px 0px;
+  display: flex;
+  max-height: 70%;
 }
+
 
 nav.header-nav {
   margin: 5px;
@@ -59,8 +68,16 @@ nav.header-nav {
   align-content: center;
 }
 
-nav.header-nav ul,
-.option-buttons ul {
+nav.footer-nav ul{
+  display: flex;
+  flex-direction: column;
+  list-style: none;
+  align-items: flex-end;
+  padding: 0px;
+  margin: 0px;
+}
+
+nav.header-nav ul {
   align-content: center;
   list-style: none;
   display: table;
@@ -69,14 +86,25 @@ nav.header-nav ul,
 
 nav.header-nav li {
   display: table-cell;
-  position: relative;
   padding: 0px 10px;
 }
 
-nav.header-nav li a,
-.option-buttons li a {
+nav.footer-nav li{
+  display: table-cell;
+  margin: 15px 0px;
+  padding: 10px 5px 10px 40px;
+  background: linear-gradient(
+    270deg,
+    rgba(20, 160, 152, 0.5018382352941176) 0%,
+    rgba(20, 160, 152, 0.29735644257703087) 20%,
+    rgba(20, 160, 152, 0.11528361344537819) 51%,
+    rgba(20, 160, 152, 0) 85%
+  );
+}
+
+nav li a {
   color: #cccccc;
-  padding: 5px 0px;
+  padding: 5px 5px;
   text-transform: uppercase;
   text-decoration: none;
   font-family: "Segoe UI", sans-serif;
@@ -84,7 +112,11 @@ nav.header-nav li a,
   display: inline-block;
   position: relative;
 }
-nav.header-nav a:after {
+
+
+/* Hover effect inspo https://codepen.io/jstn/pen/zuDst */
+
+nav a:after {
   background: none repeat scroll 0 0 transparent;
   bottom: 0;
   content: "";
@@ -93,32 +125,25 @@ nav.header-nav a:after {
   left: 50%;
   position: absolute;
   background: #cb2d6f;
-  transition: width 0.3s ease 0s, left 0.3s ease 0s;
+  transition: width ease 0s, left ease 0s;
   width: 0;
 }
 
-nav.header-nav ul li a:hover,
-.option-buttons ul li a:hover {
+nav ul li a:hover{
   color: #cb2d6f;
 }
 
-nav.header-nav a:hover:after {
+nav a:hover:after {
   width: 100%;
   left: 0;
 }
 
-nav.header-nav ul li a,
-nav.header-nav ul li a:before,
-.option-buttons ul li a,
-.option-buttons ul li a::before {
+nav ul li a,
+nav ul li a::after,
+nav ul li a:before {
   transition: all 0.5s;
 }
 
-.option-buttons li {
-  display: table-row;
-  position: relative;
-  padding: 0px 10px;
-}
 
 .modal {
   display: none;
