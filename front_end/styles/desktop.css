@@ -164,7 +164,7 @@ nav ul li a:before {
   padding: 20px;
   background-origin: 1px solid #cccccc;
   width: 35%;
-  height: 60%;
+  height: 60%; 
 }
 
 .close {
@@ -179,4 +179,8 @@ nav ul li a:before {
   color: #cb2d6f;
   text-decoration: none;
   cursor: pointer;
+}
+
+.modal, #page-wrapper {
+  transition: all 0.4s ease;
 }
