@@ -7,102 +7,151 @@
 */
 
 body {
-    background-color: #0f292f;
-    margin: 0px;
-    display: flex;
-    flex-flow: row;   
+  background-color: #0f292f;
+  margin: 0px;
+  display: flex;
+  flex-flow: row;
 }
 
-#page-wrapper{
-    position: relative;
+#page-wrapper {
+  position: relative;
 }
 
-#map{
-    display: block;       
-    background: #000;
-    border: none;        
-    height: 100vh;     
-    width: 100vw;
+#map {
+  display: block;
+  background: #000;
+  border: none;
+  height: 100vh;
+  width: 100vw;
 }
 
 header {
+  position: absolute;
+  top: 0;
 
-    position: absolute;
-    top:0;
-
-    margin: 30px 0px 30px 0px;
-    padding-right: 100px;
-    align-items: center;
-    display: flex;
-    max-height: 70%;
-    background: linear-gradient(90deg, rgba(20,160,152,0.5018382352941176) 0%, rgba(20,160,152,0.29735644257703087) 20%, 
-    rgba(20,160,152,0.11528361344537819) 51%, rgba(20,160,152,0) 85%);
-    background-blend-mode: overlay;
-    
+  margin: 30px 0px 30px 0px;
+  padding-right: 100px;
+  align-items: center;
+  display: flex;
+  max-height: 70%;
+  background: linear-gradient(
+    90deg,
+    rgba(20, 160, 152, 0.5018382352941176) 0%,
+    rgba(20, 160, 152, 0.29735644257703087) 20%,
+    rgba(20, 160, 152, 0.11528361344537819) 51%,
+    rgba(20, 160, 152, 0) 85%
+  );
+  background-blend-mode: overlay;
 }
 
 #logo {
-    padding-top: 2px;
-    align-self: center;
-    max-height: 55px;
-    margin: 0px 5px 0px 10px;
+  padding-top: 2px;
+  align-self: center;
+  max-height: 55px;
+  margin: 0px 5px 0px 10px;
 }
 
 nav.header-nav {
-    margin: 5px;
-    display: flex;
-    flex-flow: row wrap;
-    text-transform: uppercase;
-    align-content: center;
+  margin: 5px;
+  display: flex;
+  flex-flow: row wrap;
+  text-transform: uppercase;
+  align-content: center;
 }
 
-nav.header-nav ul {
-    align-content: center;    
-    list-style: none;
-    display: table;
-    padding: 0px;
+nav.header-nav ul,
+.option-buttons ul {
+  align-content: center;
+  list-style: none;
+  display: table;
+  padding: 0px;
 }
 
-nav.header-nav li { 
-    display: table-cell; 
-    position: relative; 
-    padding: 0px 10px;
+nav.header-nav li {
+  display: table-cell;
+  position: relative;
+  padding: 0px 10px;
 }
 
-nav.header-nav li a {
-    color: #cccccc;
-    padding: 5px 0px;
-    text-transform: uppercase;
-    text-decoration: none;
-    font-family: 'Segoe UI', sans-serif;
-    font-size: 90%;
-    display: inline-block;
-    position: relative;
+nav.header-nav li a,
+.option-buttons li a {
+  color: #cccccc;
+  padding: 5px 0px;
+  text-transform: uppercase;
+  text-decoration: none;
+  font-family: "Segoe UI", sans-serif;
+  font-size: 90%;
+  display: inline-block;
+  position: relative;
 }
-nav.header-nav a:after {    
-    background: none repeat scroll 0 0 transparent;
-    bottom: 0;
-    content: "";
-    display: block;
-    height: 1px;
-    left: 50%;
-    position: absolute;
-    background: #CB2D6F;
-    transition: width 0.3s ease 0s, left 0.3s ease 0s;
-    width: 0;
-}
-
-nav.header-nav ul li a:hover{
-    color: #CB2D6F;
+nav.header-nav a:after {
+  background: none repeat scroll 0 0 transparent;
+  bottom: 0;
+  content: "";
+  display: block;
+  height: 1px;
+  left: 50%;
+  position: absolute;
+  background: #cb2d6f;
+  transition: width 0.3s ease 0s, left 0.3s ease 0s;
+  width: 0;
 }
 
-nav.header-nav a:hover:after { 
-    width: 100%; 
-    left: 0; 
-    
+nav.header-nav ul li a:hover,
+.option-buttons ul li a:hover {
+  color: #cb2d6f;
+}
+
+nav.header-nav a:hover:after {
+  width: 100%;
+  left: 0;
 }
 
 nav.header-nav ul li a,
-nav.header-nav ul li a:before {
-    transition: all .5s;
+nav.header-nav ul li a:before,
+.option-buttons ul li a,
+.option-buttons ul li a::before {
+  transition: all 0.5s;
+}
+
+.option-buttons li {
+  display: table-row;
+  position: relative;
+  padding: 0px 10px;
+}
+
+.modal {
+  display: none;
+  position: absolute;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgb(0, 0, 0);
+  background-color: rgba(0, 0, 0, 0.4);
+}
+
+.modal-content {
+  background-color: #0f292f;
+  margin: 7% auto;
+  padding: 20px;
+  background-origin: 1px solid #cccccc;
+  width: 35%;
+  height: 60%;
+}
+
+.close {
+  color: #cccccc;
+  float: right;
+  font-size: 90%;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: #cb2d6f;
+  text-decoration: none;
+  cursor: pointer;
 }
