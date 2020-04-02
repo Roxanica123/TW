@@ -1,0 +1,20 @@
+chart-wrapper {
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+    flex-wrap: wrap;
+    background-color: #0f292f;
+}
+
+header {
+    position: sticky;
+    z-index: 1;
+    top: 30px;
+}
+
+footer {
+    position: fixed;
+    bottom: 0;
+    right: 0;
+}
+
