@@ -1,66 +1,72 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>US Accidents Smart Visualizer</title>
-    <link
-      rel="stylesheet"
-      media="(min-width: 640px)"
-      href="styles/desktop.css"
-    />
-  </head>
 
-  <body>
-    <div id="page-wrapper">
-      <iframe
-        id="map"
-        src="https://api.maptiler.com/maps/darkmatter/?key=QMSrw5FYODF9f4UGXtEy#1.5/19.00447/-53.23000"
-        frameborder="0"
-        allowfullscreen
-      ></iframe>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport"
+    content="width=device-width, initial-scale=1.0" />
+  <title>US Accidents Smart Visualizer</title>
+  <link rel="stylesheet"
+    media="(min-width: 640px)"
+    href="styles/desktop.css" />
+</head>
 
-      <header>
-        <div>
-          <img id="logo" src="images/logo3.png" alt="logo" />
-        </div>
+<body>
+  <div id="page-wrapper">
+    <iframe id="map"
+      src="https://api.maptiler.com/maps/darkmatter/?key=QMSrw5FYODF9f4UGXtEy#1.5/19.00447/-53.23000"
+      frameborder="0"
+      allowfullscreen></iframe>
+    <p> just a test</p>
 
-        <nav class="header-nav">
-          <ul>
-            <li class="item1"><a href="#">Map</a></li>
-            <li class="item2"><a href="#">Graph</a></li>
-            <li class="item3"><a href="#">Other Gaph</a></li>
-            <li class="item4"><a href="#">Other map</a></li>
-            <li class="item5"><a href="#">histogram</a></li>
-          </ul>
-        </nav>
-      </header>
-
-      <footer>
-        <nav class="footer-nav">
-          <ul>
-            <li><a href="#" id="fillter-button">Filters</a></li>
-            <li><a href="#">Reset</a></li>
-            <li><a href="#" id="download-button">Download</a></li>
-          </ul>
-        </nav>
-      </footer>
-    </div>
-
-    <div class="modal" id="modal-filter">
-      <div class="modal-content">
-        <span class="close">&times;</span>
-        <p>Aici punem fielduri.</p>
+    <header>
+      <div>
+        <img id="logo"
+          src="images/logo3.png"
+          alt="logo" />
       </div>
-    </div>
 
-    <div class="modal" id="modal-download">
-      <div class="modal-content">
-        <span class="close">&times;</span>
-        <p>Aici punem optiunile de downloadare.</p>
-      </div>
-    </div>
+      <nav class="header-nav">
+        <ul>
+          <li class="item1"><a href="#">Map</a></li>
+          <li class="item2"><a href="#">Graph</a></li>
+          <li class="item3"><a href="#">Other Gaph</a></li>
+          <li class="item4"><a href="#">Other map</a></li>
+          <li class="item5"><a href="#">histogram</a></li>
+        </ul>
+      </nav>
+    </header>
 
-    <script src="scripts/modals-scripts.js"></script>
-  </body>
+    <footer>
+      <nav class="footer-nav">
+        <ul>
+          <li><a href="#"
+              id="fillter-button">Filters</a></li>
+          <li><a href="#">Reset</a></li>
+          <li><a href="#"
+              id="download-button">Download</a></li>
+        </ul>
+      </nav>
+    </footer>
+  </div>
+
+  <div class="modal"
+    id="modal-filter">
+    <div class="modal-content">
+      <span class="close">&times;</span>
+      <p>Aici punem fielduri.</p>
+    </div>
+  </div>
+
+  <div class="modal"
+    id="modal-download">
+    <div class="modal-content">
+      <span class="close">&times;</span>
+      <p>Aici punem optiunile de downloadare.</p>
+    </div>
+  </div>
+
+  <script src="scripts/modals-scripts.js"></script>
+</body>
+
 </html>
