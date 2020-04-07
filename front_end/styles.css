@@ -9,6 +9,7 @@
 body {
   background-color: #0f292f;
   margin: 0px;
+  font-family: "Segoe UI", sans-serif;
   display: flex;
   flex-flow: row;
 }
@@ -105,9 +106,7 @@ nav li a {
   padding: 5px 5px;
   text-transform: uppercase;
   text-decoration: none;
-  font-family: "Segoe UI", sans-serif;
   font-size: 90%;
-  display: inline-block;
   position: relative;
 }
 
