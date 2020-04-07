@@ -34,7 +34,7 @@ chart-container {
     align-items: center;
     height: 400px;
 }
-.chart {
+chart {
     width: 50%;
     height: 90%;
 }
