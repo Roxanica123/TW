@@ -1,0 +1,56 @@
+#page-wrapper {
+    display: flex;
+    flex-direction: column;
+    border: none;
+    width: 100%;
+}
+chart-wrapper {
+    display: flex;
+    flex-direction: column;
+}
+
+chart-container:nth-of-type(2n + 1) {
+    background: linear-gradient(
+        320deg,
+        rgba(20, 160, 152, 0.4) 0%,
+        rgba(20, 160, 152, 0.3) 32%,
+        rgba(20, 160, 152, 0.2) 64%,
+        rgba(20, 160, 152, 0.09567577030812324) 91%
+    );
+}
+chart-container:nth-of-type(2n) {
+    background: linear-gradient(
+        40deg,
+        rgba(20, 160, 152, 0.4) 0%,
+        rgba(20, 160, 152, 0.3) 32%,
+        rgba(20, 160, 152, 0.2) 64%,
+        rgba(20, 160, 152, 0.09567577030812324) 91%
+    );
+}
+chart-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    height: 400px;
+}
+chart {
+    width: 50%;
+    height: 90%;
+}
+chart-container p {
+    width: 35%;
+    color: #cccccc;
+}
+
+header {
+    position: sticky;
+    z-index: 1;
+    top: 30px;
+}
+
+footer {
+    position: fixed;
+    bottom: 0;
+    right: 0;
+}
