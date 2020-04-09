@@ -9,7 +9,7 @@ chart-wrapper {
     flex-direction: column;
 }
 
-chart-container:nth-of-type(2n + 1) {
+/*chart-container:nth-of-type(2n + 1) {
     background: linear-gradient(
         320deg,
         rgba(20, 160, 152, 0.4) 0%,
@@ -26,7 +26,7 @@ chart-container:nth-of-type(2n) {
         rgba(20, 160, 152, 0.2) 64%,
         rgba(20, 160, 152, 0.09567577030812324) 91%
     );
-}
+}*/
 chart-container {
     display: flex;
     flex-direction: row;
