@@ -27,6 +27,7 @@ chart-container:nth-of-type(2n) {
         rgba(20, 160, 152, 0.09567577030812324) 91%
     );
 }*/
+
 chart-container {
     display: flex;
     flex-direction: row;
@@ -54,3 +55,5 @@ footer {
     bottom: 0;
     right: 0;
 }
+
+/*Switch*/
