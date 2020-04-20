@@ -9,25 +9,6 @@ chart-wrapper {
     flex-direction: column;
 }
 
-/*chart-container:nth-of-type(2n + 1) {
-    background: linear-gradient(
-        320deg,
-        rgba(20, 160, 152, 0.4) 0%,
-        rgba(20, 160, 152, 0.3) 32%,
-        rgba(20, 160, 152, 0.2) 64%,
-        rgba(20, 160, 152, 0.09567577030812324) 91%
-    );
-}
-chart-container:nth-of-type(2n) {
-    background: linear-gradient(
-        40deg,
-        rgba(20, 160, 152, 0.4) 0%,
-        rgba(20, 160, 152, 0.3) 32%,
-        rgba(20, 160, 152, 0.2) 64%,
-        rgba(20, 160, 152, 0.09567577030812324) 91%
-    );
-}*/
-
 chart-container {
     display: flex;
     flex-direction: row;
@@ -35,12 +16,31 @@ chart-container {
     align-items: center;
     height: 400px;
 }
+
+
 chart {
-    width: 50%;
+    width: 60%;
     height: 90%;
 }
-chart-container p {
-    width: 35%;
+
+/* Border info inspo -- https://codepen.io/joeashworth/pen/PXvRzb */
+
+chart-info-container {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    width: 30%;
+    padding: 10px;
+    background: #cccccc15;
+    box-shadow: 15px 15px rgba(0, 0, 0, 0.15);
+    transition: all 0.4s ease;
+}
+
+chart-info-container:hover {
+    box-shadow: 10px 10px rgba(0, 0, 0, 0.25);
+}
+
+chart-info-container p {
     color: #cccccc;
 }
 
@@ -57,3 +57,19 @@ footer {
 }
 
 /*Switch*/
+
+switch {
+    z-index: 1;
+    cursor: pointer;
+    border-radius: 0.1em;
+    padding: 0.3em 1em;
+    border: 0.1em solid #cccccc;
+    margin: 0 0.3em 0.3em 0;
+    color: #cccccc;
+    text-align: center;
+    transition: all 0.25s;
+}
+switch:hover {
+    color: #0f292f;
+    background-color: #cccccc;
+}
