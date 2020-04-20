@@ -8,6 +8,11 @@ export class Chart {
         this.data = null;
         this.chart = this.initChart();
     }
+
+    getType(){
+        return this.type;
+    }
+
     static options = {
         titleTextStyle: { color: '#cccccc' },
         is3D: true,

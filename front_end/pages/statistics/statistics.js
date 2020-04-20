@@ -1,15 +1,21 @@
-import { ChartsManager } from "./charts-manager.js";
+import { ChartsManager } from "./charts/charts-manager.js";
 import { Modal } from "../../modals-scripts.js";
 window.onresize = (event) => {
-    drawCharts();
-    //laaaaaaaaaag pt ca se face prea des draw, trebuie rezolvat
+    onResize();
 };
 
 window.onload = (event) => {
-    ChartsManager.drawCharts();
+    drawCharts();
     Modal.init();
 };
 
-function drawCharts() {
+window.drawCharts = function drawCharts() {
     ChartsManager.drawCharts();
+}
+
+function onResize() {
+    let timer = null;
+    if (timer != null)
+        clearTimeout(timer);
+    timer = window.setTimeout("drawCharts()", 50);
 }
