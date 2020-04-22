@@ -4,6 +4,17 @@
     border: none;
     width: 100%;
 }
+header {
+    position: sticky;
+    z-index: 1;
+    top: 30px;
+}
+
+footer {
+    position: fixed;
+    bottom: 0;
+    right: 0;
+}
 chart-wrapper {
     display: flex;
     flex-direction: column;
@@ -16,7 +27,6 @@ chart-container {
     align-items: center;
     height: 400px;
 }
-
 
 chart {
     width: 60%;
@@ -42,18 +52,6 @@ chart-info-container:hover {
 
 chart-info-container p {
     color: #cccccc;
-}
-
-header {
-    position: sticky;
-    z-index: 1;
-    top: 30px;
-}
-
-footer {
-    position: fixed;
-    bottom: 0;
-    right: 0;
 }
 
 /*Switch*/
