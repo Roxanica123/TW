@@ -1,6 +1,9 @@
 import { Chart } from "./chart.js";
 import { ChartData } from "./chart-data.js";
+import { BubbleChartData } from "./bubble-chart/bubble-chart-data.js"
+import { BubbleChartOptions } from "./bubble-chart/bubble-chart-options.js"
 
+google.charts.load("current", { packages: ["corechart"] });
 
 export class ChartsManager {
     static chartsList = [];
@@ -31,6 +34,7 @@ export class ChartsManager {
             this.chartsList[pos].drawChart();
             index = index + 1;
         });
+        this.drawBubbleChart();
     }
 
     static insertSwich(chartContainer, id) {
@@ -61,5 +65,10 @@ export class ChartsManager {
         else {
             chartContainer.prepend(info_container);
         }*/
+    }
+    static drawBubbleChart() {
+        const data = google.visualization.arrayToDataTable(BubbleChartData);
+        const chart = new google.visualization.BubbleChart(document.querySelector("bubble-chart"));
+        chart.draw(data, BubbleChartOptions);
     }
 }
