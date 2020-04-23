@@ -3,56 +3,71 @@ import { TableData } from "./table-data.js";
 /*( ಠ _ ಠ )*/
 
 export class Table {
+    static numberOfColumns;
     static initTable() {
         const tableWrapper = document.querySelector("table-wrapper");
         const table = document.createElement("table");
         tableWrapper.appendChild(table);
         Table.initHeader(table);
+
         Table.insertRows(table);
     }
     static initHeader(table) {
-        const tableHeader = document.createElement("table-header")
+        const tableHeader = document.createElement("thead");
+        const tableHeaderRow = document.createElement("tr")
         table.appendChild(tableHeader);
+        tableHeader.appendChild(tableHeaderRow)
         TableData[0].header_info.forEach(column => {
-            const headerColumn = document.createElement("column");
+            const headerColumn = document.createElement("th");
             headerColumn.innerText = column.title;
-            tableHeader.appendChild(headerColumn);
+            tableHeaderRow.appendChild(headerColumn);
         })
+        this.numberOfColumns = tableHeaderRow.children.length;
     }
     static insertRows(table) {
+        const tableBody = document.createElement("tbody");
+        table.append(tableBody);
         TableData.forEach(row => {
-            const rowContainer = document.createElement("row-container");
-            const tableRow = document.createElement("row");
-            table.appendChild(rowContainer);
-            rowContainer.appendChild(tableRow)
-            rowContainer.addEventListener("click", function () {
+            const tableRow = document.createElement("tr");
+            tableBody.appendChild(tableRow);
+            tableRow.addEventListener("click", function () {
                 Table.expandOrShrink(this);
             });
             row.header_info.forEach(column => {
-                const cell = document.createElement("cell");
+                const cell = document.createElement("td");
                 cell.innerText = column.content;
                 tableRow.appendChild(cell);
             })
         })
     }
-    static expandOrShrink(rowContainer) {
-        if (rowContainer.children.length == 2) {
-            rowContainer.removeChild(rowContainer.lastChild);
-        }
-        else {
-            const expandedRowContainer = document.createElement("expanded-row-container");
-            rowContainer.appendChild(expandedRowContainer);
-            const rowData = this.findRowData(rowContainer.firstChild);
+    static expandOrShrink(row) {
+        if (row.nextSibling==null || row.nextSibling.className != "expanded-row") {
+            const expandedRowContainer = document.createElement("tr");
+            expandedRowContainer.setAttribute("class", "expanded-row");
+            row.insertAdjacentElement('afterend', expandedRowContainer);
+
+            const cellContainer = document.createElement("td");
+            cellContainer.setAttribute("class", "expanded-row-container");
+            cellContainer.setAttribute("colspan", this.numberOfColumns);
+            expandedRowContainer.appendChild(cellContainer);
+
+            const rowData = this.findRowData(row);
+
             rowData.expand_info.forEach(item => {
-                const expandRow=document.createElement("expand-row");
-                expandedRowContainer.appendChild(expandRow);
-                const title=document.createElement("title");
-                const text=document.createElement("p");
+                const expandRow = document.createElement("expand-row");
+                cellContainer.appendChild(expandRow);
+                const title = document.createElement("p");
+                title.setAttribute("class", "title");
+                const text = document.createElement("p");
+                text.setAttribute("class", "text");
                 expandRow.append(title);
                 expandRow.append(text);
-                title.innerText=item.title;
-                text.innerText=item.content;
+                title.innerText = item.title;
+                text.innerText = item.content;
             });
+        }
+        else{
+            row.nextSibling.remove();
         }
     }
     static findRowData(row) {
