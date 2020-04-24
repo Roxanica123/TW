@@ -47,7 +47,6 @@ th {
 }
 
 th {
-    font-weight: normal;
     background-color: #14a099b7;
     font-weight: 600;
     font-size: 110%;
@@ -76,4 +75,32 @@ expand-row p.title {
 expand-row p.text {
     margin: 0px 0px 0px 5px;
     padding: 0px;
+}
+@media screen and (max-width: 615px) {
+    header {
+        position: sticky;
+        z-index: 1;
+        top: 0px;
+    }
+    table {
+        margin: 10px 0px;
+        align-self: center;
+        width: 95%;
+        background-color: #cccccc41;
+        box-shadow: 0 0 15px #00000098;
+        border-collapse: collapse;
+        overflow: hidden;
+        color: #cccccc;
+    }
+    td,
+    th {
+        padding: 5px;
+        flex-wrap: wrap;
+    }
+    th {
+        font-size: 90%;
+    }
+    td {
+        font-size: 70%;
+    }
 }
