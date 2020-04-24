@@ -71,3 +71,27 @@ switch:hover {
     color: #0f292f;
     background-color: #cccccc;
 }
+
+@media screen and (max-width: 600px) {
+    header {
+        position: absolute;
+        top: 0px;
+        padding-bottom: 0px;
+    }
+    bubble-chart {
+        position: relative;
+        top: 0;
+    }
+    chart-container {
+        flex-direction: column-reverse;
+        align-items: center;
+        height: 900px;
+    }
+    chart {
+        width: 90%;
+    }
+    chart-info-container {
+        width: 90%;
+        padding: 10px;
+    }
+}
