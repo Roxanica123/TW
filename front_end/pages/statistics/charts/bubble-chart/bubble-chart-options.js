@@ -8,15 +8,16 @@ export const BubbleChartOptions = {
             title: 'Longitude',
             titleTextStyle: { color: 'none', fontName: 'Segoe UI', italic: false },
             gridlines: { color: 'none' },
-            minValue: 25,
-            maxValue: 50
+            minValue: -130,
+            maxValue: -65
         },
         vAxis: {
             textStyle: { color: '#cccccc', fontName: 'Segoe UI', fontSize: 9 },
             title: 'Latitude',
             titleTextStyle: { color: 'none', fontName: 'Segoe UI', italic: false },
             gridlines: { color: 'none' },
-            minValue: -60
+            minValue: 25,
+            maxValue: 50
         },
         bubble: {
             textStyle: {
