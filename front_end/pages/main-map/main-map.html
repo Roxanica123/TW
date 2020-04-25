@@ -15,38 +15,35 @@
 </head>
 
 <body>
-  <div id="page-wrapper">
-    <iframe id="map"
-      src="https://api.maptiler.com/maps/darkmatter/?key=QMSrw5FYODF9f4UGXtEy#1.5/19.00447/-53.23000"
-      frameborder="0"
-      allowfullscreen></iframe>
-    <header>
-      <div>
-        <img id="logo"
-          src="../../images/logo3.png"
-          alt="logo" />
-      </div>
-      <nav class="header-nav">
-        <ul>
-          <li class="item1"><a href="../main-map/main-map.html">Map</a></li>
-          <li class="item2"><a href="../statistics/statistics.html">Statistics</a></li>
-          <li class="item3"><a href="../evolution/evolution.html">Evolution</a></li>
-          <li class="item4"><a href="../details/details.html">Accidents details</a></li>
-        </ul>
-      </nav>
-    </header>
+  <div id="map"></div>
 
-    <footer>
-      <nav class="footer-nav">
-        <ul>
-          <li><a href="#"
-              id="fillter-button">Filters</a></li>
-          <li><a href="#">Reset</a></li>
-          <li><a href="#"
-              id="download-button">Download</a></li>
-        </ul>
-      </nav>
-    </footer>
+  <header>
+    <div>
+      <img id="logo"
+        src="../../images/logo3.png"
+        alt="logo" />
+    </div>
+    <nav class="header-nav">
+      <ul>
+        <li class="item1"><a href="../main-map/main-map.html">Map</a></li>
+        <li class="item2"><a href="../statistics/statistics.html">Statistics</a></li>
+        <li class="item3"><a href="../evolution/evolution.html">Evolution</a></li>
+        <li class="item4"><a href="../details/details.html">Accidents details</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <footer>
+    <nav class="footer-nav">
+      <ul>
+        <li><a href="#"
+            id="fillter-button">Filters</a></li>
+        <li><a href="#">Reset</a></li>
+        <li><a href="#"
+            id="download-button">Download</a></li>
+      </ul>
+    </nav>
+  </footer>
   </div>
 
   <div class="modal"
@@ -64,6 +61,7 @@
       <p>Aici punem optiunile de downloadare.</p>
     </div>
   </div>
+
   <script type="module"
     src="./main-map.js"></script>
 </body>
