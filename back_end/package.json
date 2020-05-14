@@ -12,6 +12,10 @@
     "@types/node": "^13.13.4"
   },
   "dependencies": {
+    "bluebird": "^3.7.2",
+    "csv-parse": "^4.9.1",
+    "csv-parser": "^2.3.2",
+    "mysql2": "^2.1.0",
     "reflect-metadata": "^0.1.13",
     "tslint": "^6.1.2"
   }
