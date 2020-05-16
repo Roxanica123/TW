@@ -159,7 +159,7 @@ nav ul li a:before {
   padding: 20px;
   background-origin: 1px solid #cccccc;
   width: 35%;
-  height: 60%;
+  height: 50%;
 }
 
 .modal-close {
@@ -167,6 +167,8 @@ nav ul li a:before {
   color: #cccccc;
   font-size: 2em;
   font-weight: normal;
+  padding: 0px;
+  margin: 0px;
 }
 
 .modal-close:hover,
@@ -183,19 +185,21 @@ nav ul li a:before {
 
 .modal-body-content {
   display: flex;
+  flex-direction: column;
   justify-content: center;
-  flex-wrap: wrap;
+  align-items: center;
 }
 
 .modal-title {
   color: #cccccc;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 100%;
+  margin: 0px;
+  width: 90%;
   font-size: 2em;
-  padding: 15px;
+  padding: 5px;
   border-bottom: 1px solid #cccccc;
   font-family: "Segoe UI", sans-serif;
   font-weight: normal;
+  text-align: center;
+  margin-bottom: 20px;
+  padding-bottom: 10px;
 }

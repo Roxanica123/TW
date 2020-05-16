@@ -41,19 +41,22 @@ export class Modal {
 
     lauchButton.addEventListener("click", () => {
       this.modal.style.display = "block";
-      pageWrapper.style.webkitfilter = "blur(5px) grayscale(50%)";
+      pageWrapper.style.filter = "blur(5px) grayscale(50%)";
+      // pageWrapper.classList.add("blur_effect");
       console.log(pageWrapper);
     });
 
     this.exitButton.addEventListener("click", () => {
       this.modal.style.display = "none";
-      pageWrapper.style.webkitfilter = "none";
+      pageWrapper.style.filter = "none";
+      console.log(pageWrapper.style);
     });
 
     window.addEventListener("click", (target) => {
       if (event.target == this.modal) {
         this.modal.style.display = "none";
-        pageWrapper.style.webkitfilter = "none";
+        pageWrapper.style.filter = "none";
+        console.log(pageWrapper.style);
       }
     });
   }

@@ -1,0 +1,46 @@
+.filter-body {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+}
+
+.option {
+  width: 100px;
+  flex: 0 40%;
+  margin: 20px;
+}
+
+.option label {
+  color: #cccccc;
+  font-size: 1.2em;
+  font-family: "Segoe UI", sans-serif;
+  font-weight: normal;
+  text-align: center;
+  padding-right: 10px;
+}
+
+.option select {
+  background-color: #cccccc;
+  width: 100px;
+  border-radius: 4px;
+  color: black;
+  font-weight: bold;
+  font-family: "Segoe UI", sans-serif;
+}
+
+.submitButton {
+  color: black;
+  font-weight: bold;
+  font-family: "Segoe UI", sans-serif;
+  background-color: #cccccc;
+  border-radius: 4px;
+  width: 100px;
+  margin: 20px;
+  align-content: flex-end;
+  margin-left: auto;
+}
+
+.submitButton:hover {
+  color: #14a098;
+}
