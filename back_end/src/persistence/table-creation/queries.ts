@@ -63,3 +63,17 @@ export const insertRowQuery: string = "INSERT INTO ?? (source, tmc, severity, st
             Convert(?, double), Convert(?, double), ?, Convert(?, double), Convert(?, double), ?, STRCMP(?,'TRUE')=0, STRCMP(?,'TRUE')=0, \
             STRCMP(?,'TRUE')=0, STRCMP(?,'TRUE')=0 ,STRCMP(?,'TRUE')=0, STRCMP(?,'TRUE')=0, STRCMP(?,'TRUE')=0, STRCMP(?,'TRUE')=0,\
             STRCMP(?,'TRUE')=0, STRCMP(?,'TRUE')=0, STRCMP(?,'TRUE')=0, STRCMP(?,'TRUE')=0, STRCMP(?,'TRUE')=0, ?, ?, ?, ?)";
+export const createAccidentsLocationTable: string = "CREATE TABLE accidents_location (\
+  id BIGINT,\
+  start_time DATETIME,\
+  end_time DATETIME,\
+  severity INT,\
+  start_lat DOUBLE,\
+  start_lng DOUBLE,\
+  number DOUBLE, \
+  street TEXT,\
+  side TEXT,\
+  city TEXT,\
+  state TEXT)";
+export const insertIntoAccidentsLocation: string = "INSERT INTO accidents_location (id, start_time, end_time, severity, start_lat, start_lng, number,\
+  street, side, city, state) SELECT id, start_time, end_time, severity, start_lat, start_lng, number, street, side, city, state FROM ??"; 

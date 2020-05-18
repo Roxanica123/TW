@@ -10,6 +10,13 @@ export class AccidentsController {
         return result;
     }
 
+    @HttpGet("heat-map")
+    public getHeatMap(): HttpActionResult {
+
+        const result: Ok = new Ok();
+        return result;
+    }
+
     @HttpPost()
     public postAccidents(): HttpActionResult {
         const result: HttpActionResult = new Ok();
