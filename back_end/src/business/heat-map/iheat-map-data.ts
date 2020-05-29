@@ -1,3 +1,3 @@
-export interface IHeatMapData{
-    heatMapData:number[][];
+export interface IHeatMapData {
+    heatMapData: number[][];
 }

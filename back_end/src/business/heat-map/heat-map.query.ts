@@ -1,12 +1,13 @@
 import { IHeatMapCoordinates } from "../../domain/entities";
 import { IHeatMapRepository, HeatMapRepository } from "../../domain/repositories"
-import { IHeatMapData} from "./Iheat-map-data";
+import { IHeatMapData } from "./Iheat-map-data";
 import { IAccidentsLimitQuery } from "./Iaccidents-limit-query";
 
 export class HeatMapQuery {
 
     private readonly repository: IHeatMapRepository;
     private readonly limitQuery: IAccidentsLimitQuery;
+
     constructor(limitQuery: IAccidentsLimitQuery) {
         this.repository = new HeatMapRepository();
         this.limitQuery = limitQuery;
@@ -19,6 +20,6 @@ export class HeatMapQuery {
         }
         catch{ }
         const queryResult: IHeatMapCoordinates[] = await this.repository.getLatestAccidentsCoordinates(limit);
-        return { heatMapData: queryResult.map(coordinates=> [coordinates.start_lng, coordinates.start_lat]) };
+        return { heatMapData: queryResult.map(coordinates => [coordinates.start_lng, coordinates.start_lat, coordinates.severity]) };
     }
 }

@@ -10,7 +10,7 @@ export class HeatMapRepository implements IHeatMapRepository {
         this.connection = new Connection();
     }
     public async getLatestAccidentsCoordinates(limit: number): Promise<IHeatMapCoordinates[]> {
-        const query: string = "SELECT start_lat, start_lng FROM accidents ORDER BY start_time DESC LIMIT " + limit;
+        const query: string = "SELECT start_lat, start_lng, severity FROM accidents ORDER BY start_time DESC LIMIT " + limit;
         const coordinates: IHeatMapCoordinates[] = await this.connection.execute(query);
         return coordinates;
     }

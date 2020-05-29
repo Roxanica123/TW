@@ -1,3 +1,3 @@
 export interface IAccidentsLimitQuery {
-    limit:number
+    limit: number;
 }
