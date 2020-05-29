@@ -1,7 +1,7 @@
 import { IHeatMapCoordinates } from "../../domain/entities";
 import { IHeatMapRepository, HeatMapRepository } from "../../domain/repositories"
 import { IHeatMapData } from "./Iheat-map-data";
-import { IAccidentsLimitQuery } from "./Iaccidents-limit-query";
+import { IAccidentsLimitQuery } from "../Iaccidents-limit-query";
 
 export class HeatMapQuery {
 
