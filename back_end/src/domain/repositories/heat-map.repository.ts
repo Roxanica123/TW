@@ -1,4 +1,4 @@
-import { IHeatMapRepository } from "./iheat-map-repository";
+import { IHeatMapRepository } from "./Iheat-map.repository";
 import { Connection } from "../../persistence";
 import { IHeatMapCoordinates } from "../entities";
 

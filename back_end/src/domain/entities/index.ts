@@ -1,2 +1,2 @@
-export * from "./accident-interface"
-export * from "./iheat-map-coordinates"
+export * from "./Iaccident"
+export * from "./Iheat-map-coordinates"
