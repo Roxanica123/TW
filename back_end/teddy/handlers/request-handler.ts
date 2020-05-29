@@ -34,8 +34,9 @@ export class RequestHandler {
         if (urlParams !== undefined && !urlParams.every(element => element.key !== undefined && element.value !== undefined))
             return new BadRequest("Invalid Query");
 
-        const query: any = urlParams?.reduce((accumulator: any, currentValue: any) => { return accumulator[currentValue.key] = currentValue.value });
-
+        const query: any = urlParams?.reduce((accumulator: any, currentValue: any) => {
+            accumulator[currentValue.key] = currentValue.value; return accumulator;
+        }, {});
         return controller[this.methodName].apply(controller, [query, body]);
     }
 }

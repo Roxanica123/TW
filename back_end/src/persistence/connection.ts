@@ -7,7 +7,7 @@ export class Connection {
         this.pool = TeddyConnection.getInstance().getConnectionPool();
     }
 
-    public async execute<T>(queryString: string, params: any[]): Promise<T[]> {
+    public async execute<T>(queryString: string, params: any[] = []): Promise<T[]> {
         try {
             const [rows] = await this.pool.query(queryString, params);
             return rows;

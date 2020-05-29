@@ -6,7 +6,7 @@ export class Database {
 
     static async init(connection: any, path: string, tableName: string) {
         await this.populateAccidentsTable(connection, path, tableName);
-        this.populateAccidentsLocationTable(connection, tableName);
+        //this.populateAccidentsLocationTable(connection, tableName);
     }
     public static async populateAccidentsTable(connection: any, path: string, tableName: string) {
 
