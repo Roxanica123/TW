@@ -11,7 +11,7 @@ export class RequestHandler {
         this.methodName = methodName;
     }
 
-    public execute(request: IncomingMessage): HttpActionResult {
+    public async execute(request: IncomingMessage): Promise<HttpActionResult> {
         const controller: any = new this.constructorFunction();
         let bodyString: string = "";
         let body: any = {};
@@ -37,6 +37,6 @@ export class RequestHandler {
         const query: any = urlParams?.reduce((accumulator: any, currentValue: any) => {
             accumulator[currentValue.key] = currentValue.value; return accumulator;
         }, {});
-        return controller[this.methodName].apply(controller, [query, body]);
+        return await controller[this.methodName].apply(controller, [query, body]);
     }
 }

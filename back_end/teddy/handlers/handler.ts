@@ -20,11 +20,11 @@ export class Handler {
         return this.handlerInstance;
     }
 
-    public handleRequest(request: IncomingMessage): HttpActionResult {
+    public async handleRequest(request: IncomingMessage): Promise<HttpActionResult> {
         const requestHandler: RequestHandler | undefined = this.requestHandlersController.getRequestHandler(request);
         if (requestHandler === undefined)
             return new BadRequest("You stupid");
-        return requestHandler.execute(request);
+        return await requestHandler.execute(request);
     }
 
 }

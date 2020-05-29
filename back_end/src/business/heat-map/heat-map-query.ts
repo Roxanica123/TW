@@ -7,21 +7,18 @@ export class HeatMapQuery {
 
     private readonly repository: IHeatMapRepository;
     private readonly limitQuery: IAccidentsLimitQuery;
-
     constructor(limitQuery: IAccidentsLimitQuery) {
         this.repository = new HeatMapRepository();
         this.limitQuery = limitQuery;
     }
 
     public async execute(): Promise<IHeatMapData> {
-        let data: IHeatMapData = { heatMapData: [] };
+        let limit: number = 100;
         try {
-            const queryResult: IHeatMapCoordinates[] = await this.repository.getLatestAccidentsCoordinates(this.limitQuery.limit);
-            data = { heatMapData: queryResult.map(coordinate => [coordinate.start_lng, coordinate.start_lat]) };
+            limit = this.limitQuery.limit;
         }
-        catch (error) {
-            console.error(error);
-        }
-        return data;
+        catch{ }
+        const queryResult: IHeatMapCoordinates[] = await this.repository.getLatestAccidentsCoordinates(limit);
+        return { heatMapData: queryResult.map(coordinate => [coordinate.start_lng, coordinate.start_lat]) };
     }
 }
