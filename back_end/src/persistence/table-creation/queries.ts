@@ -63,3 +63,50 @@ export const insertRowQuery: string = "INSERT INTO ?? (source, tmc, severity, st
             Convert(?, double), Convert(?, double), ?, Convert(?, double), Convert(?, double), ?, STRCMP(?,'TRUE')=0, STRCMP(?,'TRUE')=0, \
             STRCMP(?,'TRUE')=0, STRCMP(?,'TRUE')=0 ,STRCMP(?,'TRUE')=0, STRCMP(?,'TRUE')=0, STRCMP(?,'TRUE')=0, STRCMP(?,'TRUE')=0,\
             STRCMP(?,'TRUE')=0, STRCMP(?,'TRUE')=0, STRCMP(?,'TRUE')=0, STRCMP(?,'TRUE')=0, STRCMP(?,'TRUE')=0, ?, ?, ?, ?)";
+export const createAccidentsLocationTable: string = "CREATE TABLE accidents_location (\
+  id BIGINT,\
+  start_time DATETIME,\
+  end_time DATETIME,\
+  severity INT,\
+  start_lat DOUBLE,\
+  start_lng DOUBLE,\
+  number DOUBLE, \
+  street TEXT,\
+  side TEXT,\
+  city TEXT,\
+  state TEXT)";
+export const insertIntoAccidentsLocation: string = "INSERT INTO accidents_location (id, start_time, end_time, severity, start_lat, start_lng, number,\
+  street, side, city, state) SELECT id, start_time, end_time, severity, start_lat, start_lng, number, street, side, city, state FROM ??";
+
+export const createTimeOfDayFunction: string = "CREATE\
+FUNCTION getTimeOfDay (start_time datetime)\
+RETURNS CHAR(11) deterministic\
+return case\
+  when (date_format(start_time, '%H')*60 + date_format(start_time, '%i')) <180 then '00:01-03:00'\
+  when (date_format(start_time, '%H')*60 + date_format(start_time, '%i')) <360 then '03:01-06:00'\
+  when (date_format(start_time, '%H')*60 + date_format(start_time, '%i')) <540 then '06:01-09:00'\
+  when (date_format(start_time, '%H')*60 + date_format(start_time, '%i')) <720 then '09:01-12:00'\
+  when (date_format(start_time, '%H')*60 + date_format(start_time, '%i')) <900 then '12:01-15:00'\
+  when (date_format(start_time, '%H')*60 + date_format(start_time, '%i')) <1080 then '15:01-18:00'\
+  when (date_format(start_time, '%H')*60 + date_format(start_time, '%i')) <1260 then '18:01-21:00'\
+  else '21:01:00:00'\
+  end;\
+";
+
+export const createPOIView: string = "create view converted_points_of_interest as \
+select start_time, concat_ws(' and ', Amenity, Bump, Crossing, Give_way, Junction, No_exit, Railway, Roundabout, Station, Stop, Traffic_calming, Traffic_signal, Turning_loop) as point_of_interest from\
+(select\
+start_time,\
+if(amenity=1, 'Amenity', null) as Amenity ,\
+if(bump=1, 'Bump', null) as Bump,  \
+if(crossing=1, 'Crossing', null) as Crossing,\
+if(give_way=1, 'Give way', null) as Give_way,\
+if(junction=1, 'Junction', null) as Junction,\
+if(no_exit=1, 'No exit', null) as No_exit,\
+if(railway=1, 'Railway', null) as Railway,\
+if(roundabout=1, 'Roundabout', null) as Roundabout,\
+if(station=1, 'Station', null) as Station,\
+if(stop=1, 'Stop', null) as Stop,\
+if(traffic_calming=1, 'Traffic calming', null) as Traffic_calming,\
+if(traffic_signal=1, 'Traffic signal', null) as Traffic_signal,\
+if(turning_loop=1, 'Turning loop', null) as Turning_loop from accidents) points";

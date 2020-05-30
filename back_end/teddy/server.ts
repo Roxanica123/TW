@@ -3,8 +3,9 @@ import { HttpActionResult } from "./action-results";
 import { Handler } from "./handlers";
 
 export class Server {
-    public static handle(req: http.IncomingMessage, res: http.ServerResponse): void {
-        const response: HttpActionResult = Handler.getInstance().handleRequest(req);
+    public static async handle(req: http.IncomingMessage, res: http.ServerResponse): Promise<void> {
+        const response: HttpActionResult = await Handler.getInstance().handleRequest(req);
+        res.setHeader("Access-Control-Allow-Origin", "*");
         res.statusCode = response.statusCode;
         res.end(response.body);
     }

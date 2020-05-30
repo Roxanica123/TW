@@ -11,7 +11,7 @@ export class RequestHandler {
         this.methodName = methodName;
     }
 
-    public execute(request: IncomingMessage): HttpActionResult {
+    public async execute(request: IncomingMessage): Promise<HttpActionResult> {
         const controller: any = new this.constructorFunction();
         let bodyString: string = "";
         let body: any = {};
@@ -34,8 +34,9 @@ export class RequestHandler {
         if (urlParams !== undefined && !urlParams.every(element => element.key !== undefined && element.value !== undefined))
             return new BadRequest("Invalid Query");
 
-        const query: any = urlParams?.reduce((accumulator: any, currentValue: any) => { return accumulator[currentValue.key] = currentValue.value });
-
-        return controller[this.methodName].apply(controller, [query, body]);
+        const query: any = urlParams?.reduce((accumulator: any, currentValue: any) => {
+            accumulator[currentValue.key] = currentValue.value; return accumulator;
+        }, {});
+        return await controller[this.methodName].apply(controller, [query, body]);
     }
 }

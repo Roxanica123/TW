@@ -1,5 +1,5 @@
 import { start } from "../teddy/server-start";
-import { AccidentsController } from "./presentation/accidents.controller";
+import { AccidentsController } from "./presentation/AccidentsController";
 
 start({
     controllers: [
