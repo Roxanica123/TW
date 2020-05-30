@@ -1,4 +1,4 @@
-import { IChartData } from "./Ichart-data";
+import { IChartData } from "./IChartData";
 
 export interface IChart {
     id: string;

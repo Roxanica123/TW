@@ -1,4 +1,4 @@
-import { IBubbleChartRepository } from "./Ibubble-chart.repository";
+import { IBubbleChartRepository } from "./IBubbleChartRepository";
 import { IBubbleChartPoint } from "../entities";
 import { Connection } from "../../persistence";
 
