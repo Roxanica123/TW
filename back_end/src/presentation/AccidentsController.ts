@@ -3,6 +3,8 @@ import { Controller, HttpDelete, HttpPost, HttpGet } from "../../teddy/decorator
 import { HeatMapQuery, IHeatMapData } from "../business/heat-map";
 import { IAccidentsLimitQuery } from "../business/IAccidentsLimitQuery";
 import { IBubbleChartData, BubbleChartQuery } from "../business/statistics/bubble-chart";
+import { IChartsData } from "../business/statistics/charts/";
+import { ChartsQuery } from "../business/statistics";
 
 @Controller('/accidents')
 export class AccidentsController {
@@ -19,9 +21,14 @@ export class AccidentsController {
         return new Ok(JSON.stringify(result));
     }
 
-    @HttpGet("/statistics")
+    @HttpGet("/statistics/bubble-chart")
     public async getStatistics(query: IAccidentsLimitQuery): Promise<HttpActionResult> {
         const result: IBubbleChartData = await new BubbleChartQuery(query).execute();
+        return new Ok(JSON.stringify(result));
+    }
+    @HttpGet("/statistics/charts")
+    public async getCharts(query: IAccidentsLimitQuery): Promise<HttpActionResult> {
+        const result: IChartsData = await new ChartsQuery(query).execute();
         return new Ok(JSON.stringify(result));
     }
 

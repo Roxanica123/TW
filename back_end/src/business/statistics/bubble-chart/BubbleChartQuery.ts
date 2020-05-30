@@ -1,6 +1,6 @@
 import { IAccidentsLimitQuery } from "../../IAccidentsLimitQuery";
 import { BubbleChartRepository, IBubbleChartRepository } from "../../../domain/repositories";
-import { IBubbleChartData } from "./IBubbleChartData";
+import { IBubbleChartData } from ".";
 import { IBubbleChartPoint, IBubbleChartPointKeys } from "../../../domain/entities";
 
 export class BubbleChartQuery {
@@ -18,7 +18,7 @@ export class BubbleChartQuery {
             limit = this.limitQuery.limit;
         }
         catch{ }
-        const queryResult: IBubbleChartPoint[] = await this.repository.getLatestAccidentsLocationInfo(limit);
+        const queryResult: IBubbleChartPoint[] = await this.repository.getAccidentsLocationInfo(limit);
         return {
             bubbleChartData: [IBubbleChartPointKeys].concat(queryResult.map(point => [point.id, point.start_lng, point.start_lat, point.severity]))
         };

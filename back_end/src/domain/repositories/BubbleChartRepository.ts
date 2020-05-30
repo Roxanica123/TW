@@ -10,7 +10,7 @@ export class BubbleChartRepository implements IBubbleChartRepository{
         this.connection = new Connection();
     }
     
-    public async getLatestAccidentsLocationInfo(limit: number): Promise<IBubbleChartPoint[]> {
+    public async getAccidentsLocationInfo(limit: number): Promise<IBubbleChartPoint[]> {
         const query: string = "SELECT id, start_lat, start_lng, state, severity FROM accidents ORDER BY start_time DESC LIMIT " + limit;
         const points: IBubbleChartPoint[] = await this.connection.execute(query);
         return points;

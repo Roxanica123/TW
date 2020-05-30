@@ -1,7 +1,7 @@
 import { IChartData } from "./IChartData";
 
 export interface IChart {
-    id: string;
+    id: any;
     data: IChartData;
     text: string;
 }

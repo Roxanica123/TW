@@ -1,6 +1,4 @@
 export * from "./IAccident"
 export * from "./IHeatMapCoordinates"
 export * from "./IBubbleChartPoint"
-export * from "./IChart"
-export * from "./IChartData"
-export * from "./IChartDataColumn"
+export * from "./IChartDataRow"
