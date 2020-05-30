@@ -1,4 +1,4 @@
-import { IBubbleChartPoint } from "../entities/Ibubble-chart-point";
+import { IBubbleChartPoint } from "../entities/IBubbleChartPoint";
 
 export interface IBubbleChartRepository {
     getLatestAccidentsLocationInfo(limit: number): Promise<IBubbleChartPoint[]>;

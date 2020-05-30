@@ -1,2 +1,2 @@
-export * from "./heat-map.query"
-export * from "./Iheat-map-data"
+export * from "./HeatMapQuery"
+export * from "./IHeatMapData"

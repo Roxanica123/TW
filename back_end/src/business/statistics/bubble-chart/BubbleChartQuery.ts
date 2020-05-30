@@ -1,6 +1,6 @@
-import { IAccidentsLimitQuery } from "../../Iaccidents-limit-query";
+import { IAccidentsLimitQuery } from "../../IAccidentsLimitQuery";
 import { BubbleChartRepository, IBubbleChartRepository } from "../../../domain/repositories";
-import { IBubbleChartData } from "./Ibubble-chart-data";
+import { IBubbleChartData } from "./IBubbleChartData";
 import { IBubbleChartPoint, IBubbleChartPointKeys } from "../../../domain/entities";
 
 export class BubbleChartQuery {

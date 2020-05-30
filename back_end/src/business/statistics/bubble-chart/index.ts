@@ -1,2 +1,2 @@
-export * from "./Ibubble-chart-data"
-export * from "./bubble-chart.query"
+export * from "./IBubbleChartData"
+export * from "./BubbleChartQuery"

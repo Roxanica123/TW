@@ -1,7 +1,7 @@
 import { HttpActionResult, Ok, NoContent } from "../../teddy/action-results";
 import { Controller, HttpDelete, HttpPost, HttpGet } from "../../teddy/decorators";
 import { HeatMapQuery, IHeatMapData } from "../business/heat-map";
-import { IAccidentsLimitQuery } from "../business/Iaccidents-limit-query";
+import { IAccidentsLimitQuery } from "../business/IAccidentsLimitQuery";
 import { IBubbleChartData, BubbleChartQuery } from "../business/statistics/bubble-chart";
 
 @Controller('/accidents')
