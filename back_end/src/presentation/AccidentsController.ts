@@ -5,6 +5,9 @@ import { IAccidentsLimitQuery } from "../business/IAccidentsLimitQuery";
 import { IBubbleChartData, BubbleChartQuery } from "../business/statistics/bubble-chart";
 import { IChartsData } from "../business/statistics/charts/";
 import { ChartsQuery } from "../business/statistics";
+import { IAccidentsTablePageQuery } from "../business/IAccidentsTablePageQuery";
+import { DetailsTableQuery } from "../business/details/DetailsTableQuery";
+import { IDetailsTableData } from "../business/details";
 
 @Controller('/accidents')
 export class AccidentsController {
@@ -31,6 +34,13 @@ export class AccidentsController {
         const result: IChartsData = await new ChartsQuery(query).execute();
         return new Ok(JSON.stringify(result));
     }
+
+    @HttpGet("/details")
+    public async getTable(query: IAccidentsTablePageQuery): Promise<HttpActionResult> {
+        const result: IDetailsTableData = await new DetailsTableQuery(query).execute();
+        return new Ok(JSON.stringify(result));
+    }
+
 
     @HttpPost()
     public postAccidents(): HttpActionResult {
