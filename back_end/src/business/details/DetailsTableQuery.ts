@@ -15,11 +15,13 @@ export class DetailsTableQuery {
 
     public async execute(): Promise<IDetailsTableData> {
         let page: number = 0;
+        let limit: number = 25;
         try {
             page = this.pageQuery.page;
+            limit = this.pageQuery.limit;
         }
         catch{ }
-        const queryResult: ITableRowData[] = await this.repository.getAccidentsDetailsTable(page);
+        const queryResult: ITableRowData[] = await this.repository.getAccidentsDetailsTable(page, limit);
         const tableData: IDetailsTableData = {
             table_data: queryResult.map(row => {
                 const header: IDetailsTableRowData[] = TableRowHeaderKeys.map(key => {
@@ -31,6 +33,7 @@ export class DetailsTableQuery {
                 return { header_info: header, expand_info: expand };
             })
         };
+
         return tableData;
     }
 }
