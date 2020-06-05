@@ -94,7 +94,7 @@ return case\
 ";
 
 export const createPOIView: string = "create view converted_points_of_interest as \
-select start_time, concat_ws(' and ', Amenity, Bump, Crossing, Give_way, Junction, No_exit, Railway, Roundabout, Station, Stop, Traffic_calming, Traffic_signal, Turning_loop) as point_of_interest from\
+select id, start_time, concat_ws(' and ', Amenity, Bump, Crossing, Give_way, Junction, No_exit, Railway, Roundabout, Station, Stop, Traffic_calming, Traffic_signal, Turning_loop) as point_of_interest from\
 (select\
 start_time,\
 if(amenity=1, 'Amenity', null) as Amenity ,\
