@@ -8,7 +8,7 @@ export class AccidentsRepository implements IAccidentsRepository {
     constructor() {
         this.connection = new Connection();
     }
-    
+
     async getAccidentsDaysOfWeekDistribution(limit: number): Promise<IChartDataRow[]> {
         const query: string = `SELECT * , COUNT('^') as count from (SELECT DATE_FORMAT(start_time, '%W') as dayOfWeek FROM accidents ORDER BY start_time DESC LIMIT ${limit}) days group by 1`;
         const rows: IChartDataRow[] = await this.connection.execute(query);
