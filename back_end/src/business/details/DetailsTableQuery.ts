@@ -1,15 +1,15 @@
 import { IAccidentsTablePageQuery } from "../IAccidentsTablePageQuery";
-import { ITableRowData, TableRowHeaderKeys, TableRowExpandKeys as TableRowExpandKeys } from "../../domain/entities";
-import { ITableRepository, TableRepository } from "../../domain/repositories";
+import { ITableRowData, TableRowHeaderDataKeys, TableRowExpandDataKeys } from "../../domain/entities";
+import { IAccidentsRepository, AccidentsRepository } from "../../domain/repositories";
 import { IDetailsTableData, IDetailsTableRowData } from ".";
 
 export class DetailsTableQuery {
 
-    private readonly repository: ITableRepository;
+    private readonly repository: IAccidentsRepository;
     private readonly pageQuery: IAccidentsTablePageQuery;
 
     constructor(pageQuery: IAccidentsTablePageQuery) {
-        this.repository = new TableRepository();
+        this.repository = new AccidentsRepository();
         this.pageQuery = pageQuery;
     }
 
@@ -21,13 +21,13 @@ export class DetailsTableQuery {
             limit = this.pageQuery.limit;
         }
         catch{ }
-        const queryResult: ITableRowData[] = await this.repository.getAccidentsDetailsTable(page, limit);
+        const queryResult: ITableRowData[] = await this.repository.getAccidentsDetails(page, limit);
         const tableData: IDetailsTableData = {
             table_data: queryResult.map(row => {
-                const header: IDetailsTableRowData[] = TableRowHeaderKeys.map(key => {
+                const header: IDetailsTableRowData[] = TableRowHeaderDataKeys.map(key => {
                     return { title: key, content: row[key] };
                 });
-                const expand: IDetailsTableRowData[] = TableRowExpandKeys.map(key => {
+                const expand: IDetailsTableRowData[] = TableRowExpandDataKeys.map(key => {
                     return { title: key, content: row[key] };
                 })
                 return { header_info: header, expand_info: expand };

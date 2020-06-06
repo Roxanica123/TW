@@ -1,16 +1,15 @@
-import { TimeOfDayChartRepository } from "./TimeOfDayChartRepository";
-import { DayOfWeekChartRepository } from "./DayOfWeekChartRepository";
-import { WeatherConditionChartRepository } from "./WeatherConditionChartRepository";
-import { SeverityChartRepository } from "./SeverityChartRepository";
-import { StateChartRepository } from "./StateChartRepository";
-import { PointOfInterestChartRepository } from "./PointOfInterestChartRepository";
+import { AccidentsRepository } from "../AccidentsRepository";
+import { IAccidentsRepository } from "../IAccidentsRepository";
 
 export class ChartRepositoryFactory {
-
-    public timeOfDay: Function = () => { return new TimeOfDayChartRepository() };
-    public dayOfWeek: Function = () => { return new DayOfWeekChartRepository() };
-    public weatherCondition: Function = () => { return new WeatherConditionChartRepository() };
-    public severity: Function = () => { return new SeverityChartRepository() };
-    public state: Function = () => { return new StateChartRepository() };
-    public pointOfInterest: Function = () => { return new PointOfInterestChartRepository() };
+    private readonly accidentsRepository: IAccidentsRepository;
+    constructor() {
+        this.accidentsRepository = new AccidentsRepository();
+    }
+    public timeOfDay: Function = this.accidentsRepository.getAccidentsTimeOfDayDistribution;
+    public dayOfWeek: Function = this.accidentsRepository.getAccidentsDaysOfWeekDistribution;
+    public weatherCondition: Function = this.accidentsRepository.getAccidentsWeatherCondition;
+    public severity: Function = this.accidentsRepository.getAccidentsSeverityDistribution;
+    public state: Function = this.accidentsRepository.getAccidentsStateDistribution;
+    public pointOfInterest: Function = this.accidentsRepository.getAccidentsPointsOfInterestDistribution;
 }

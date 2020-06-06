@@ -1,14 +1,14 @@
 import { IAccidentsLimitQuery } from "../../IAccidentsLimitQuery";
-import { BubbleChartRepository, IBubbleChartRepository } from "../../../domain/repositories";
+import { IAccidentsRepository, AccidentsRepository} from "../../../domain/repositories";
 import { IBubbleChartData } from ".";
 import { IBubbleChartPoint, IBubbleChartPointKeys } from "../../../domain/entities";
 
 export class BubbleChartQuery {
-    private readonly repository: IBubbleChartRepository;
+    private readonly repository: IAccidentsRepository;
     private readonly limitQuery: IAccidentsLimitQuery;
 
     constructor(limitQuery: IAccidentsLimitQuery) {
-        this.repository = new BubbleChartRepository();
+        this.repository = new AccidentsRepository();
         this.limitQuery = limitQuery;
     }
 
