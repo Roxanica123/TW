@@ -15,7 +15,7 @@ export class DetailsTableQuery {
 
     public async execute(): Promise<IDetailsTableData> {
         let page: number = 0;
-        let limit: number = 25;
+        let limit: number = 15;
         try {
             page = this.pageQuery.page;
             limit = this.pageQuery.limit;

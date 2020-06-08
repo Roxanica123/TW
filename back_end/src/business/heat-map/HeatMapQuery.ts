@@ -14,7 +14,7 @@ export class HeatMapQuery {
     }
 
     public async execute(): Promise<IHeatMapData> {
-        let limit: number = 100;
+        let limit: number = 1000;
         try {
             limit = this.limitQuery.limit;
         }

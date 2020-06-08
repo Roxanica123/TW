@@ -13,14 +13,14 @@ export class BubbleChartQuery {
     }
 
     public async execute(): Promise<IBubbleChartData> {
-        let limit: number = 100;
+        let limit: number = 500;
         try {
             limit = this.limitQuery.limit;
         }
         catch{ }
         const queryResult: IBubbleChartPoint[] = await this.repository.getAccidentsLocationInfo(limit);
         return {
-            bubbleChartData: [IBubbleChartPointKeys].concat(queryResult.map(point => [point.id, point.start_lng, point.start_lat, point.severity]))
+            bubbleChartData: [IBubbleChartPointKeys].concat(queryResult.map(point => [point.id.toString(), point.start_lng, point.start_lat, point.state ,point.severity]))
         };
     }
 }

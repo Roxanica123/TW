@@ -59,7 +59,7 @@ export class AccidentsRepository implements IAccidentsRepository {
     async getAccidentsDetails(page: number, limit: number): Promise<ITableRowData[]> {
         const query: string = `select a.id as "id", date_format(a.start_time, "%d/%m/%Y") as "date", date_format(a.start_time, "%T") as "time",\
         a.timezone as "timezone", a.severity as "severity", a.state as "state" ,\
-        concat_ws(', ', a.start_lng , a.start_lat,  a.number,  a.street, a.city, a.state, a.zipcode ) as "exact_Location", description as "description", \
+        concat_ws(', ', a.start_lng , a.start_lat,  a.number,  a.street, a.city, a.state, a.zipcode ) as "exact_location", description as "description", \
         (select if(CONVERT(point_of_interest USING utf8mb4)='', "None", point_of_interest) from converted_points_of_interest c where a.id=c.id) as "point_of_interest",\
         if(a.weather_condition="", "No information", a.weather_condition) as "weather_condition",\
         concat('Temperature: ',a.temperature,', Pressure: ',a.pressure,', Humidity: ',a.humidity,', Wind speed: ',a.wind_speed) as "weather_details",\

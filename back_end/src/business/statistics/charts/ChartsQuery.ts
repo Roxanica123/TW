@@ -21,7 +21,7 @@ export class ChartsQuery {
         };
     }
     private async getChart(chartName: string): Promise<IChart> {
-        let limit: number = 100;
+        let limit: number = 500;
         try {
             limit = this.limitQuery.limit;
         }
