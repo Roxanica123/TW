@@ -1,8 +1,6 @@
 import { Chart } from "./chart.js";
-import { ChartData } from "./chart-data.js";
-import { BubbleChartData } from "./bubble-chart/bubble-chart-data.js"
 import { BubbleChartOptions } from "./bubble-chart/bubble-chart-options.js"
-
+import { Request } from "./../../../services/request.js"
 google.charts.load("current", { packages: ["corechart"] });
 
 export class ChartsManager {
@@ -14,25 +12,30 @@ export class ChartsManager {
         container.remove();
 
         let index = 0;
-        ChartData.forEach(element => {
-            const chartContainer = document.createElement('chart-container');
-            emptyContainer.appendChild(chartContainer);
-            const chartElement = document.createElement('chart');
-            chartContainer.appendChild(chartElement);
-            this.insertChartInfo(chartContainer, element, index);
-            chartElement.setAttribute('name', element.id);
-            let pos = ChartsManager.chartsList.indexOf(ChartsManager.chartsList.find(chart => chart.id == element.id));
-            if (pos > -1) {
-                ChartsManager.chartsList[pos] = new Chart(chartElement, ChartsManager.chartsList[pos].getType(), element.id);
-            }
-            else {
-                this.chartsList.push(new Chart(chartElement, 0, element.id));
-                pos = this.chartsList.length - 1;
-            }
 
-            this.chartsList[pos].initDataTable(element.data.columns, element.data.rows);
-            this.chartsList[pos].drawChart();
-            index = index + 1;
+        const req = new Request("GET", "http://localhost:5000/accidents/statistics/charts");
+        req.getData().then(resultData => {
+            resultData = resultData.chartsData;
+            resultData.forEach(element => {
+                const chartContainer = document.createElement('chart-container');
+                emptyContainer.appendChild(chartContainer);
+                const chartElement = document.createElement('chart');
+                chartContainer.appendChild(chartElement);
+                this.insertChartInfo(chartContainer, element, index);
+                chartElement.setAttribute('name', element.id);
+                let pos = ChartsManager.chartsList.indexOf(ChartsManager.chartsList.find(chart => chart.id == element.id));
+                if (pos > -1) {
+                    ChartsManager.chartsList[pos] = new Chart(chartElement, ChartsManager.chartsList[pos].getType(), element.id);
+                }
+                else {
+                    this.chartsList.push(new Chart(chartElement, 0, element.id));
+                    pos = this.chartsList.length - 1;
+                }
+
+                this.chartsList[pos].initDataTable(element.data.columns, element.data.rows);
+                this.chartsList[pos].drawChart();
+                index = index + 1;
+            });
         });
         this.drawBubbleChart();
     }
@@ -67,8 +70,12 @@ export class ChartsManager {
         }*/
     }
     static drawBubbleChart() {
-        const data = google.visualization.arrayToDataTable(BubbleChartData);
-        const chart = new google.visualization.BubbleChart(document.querySelector("bubble-chart"));
-        chart.draw(data, BubbleChartOptions);
+        const req = new Request("GET", "http://localhost:5000/accidents/statistics/bubble-chart");
+        req.getData().then(resultData => {
+            resultData = resultData.bubbleChartData;
+            const data = google.visualization.arrayToDataTable(resultData);
+            const chart = new google.visualization.BubbleChart(document.querySelector("bubble-chart"));
+            chart.draw(data, BubbleChartOptions);
+        })
     }
 }

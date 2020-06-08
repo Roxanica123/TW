@@ -33,6 +33,9 @@ chart {
     height: 90%;
 }
 
+bubble-chart {
+    width: 90%;
+}
 /* Border info inspo -- https://codepen.io/joeashworth/pen/PXvRzb */
 
 chart-info-container {
