@@ -7,5 +7,5 @@ window.onload = (event) => {
 };
 
 window.initTable = function initTable() {
-    Table.initTable();
+    new Table().initTable();
 }

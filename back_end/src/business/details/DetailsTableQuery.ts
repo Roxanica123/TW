@@ -1,33 +1,38 @@
-import { IAccidentsTablePageQuery } from "../IAccidentsTablePageQuery";
-import { ITableRowData, TableRowHeaderKeys, TableRowExpandKeys as TableRowExpandKeys } from "../../domain/entities";
-import { ITableRepository, TableRepository } from "../../domain/repositories";
+import { ITableRowData, TableRowHeaderDataKeys, TableRowExpandDataKeys } from "../../domain/entities";
+import { IAccidentsRepository, AccidentsRepository } from "../../domain/repositories";
 import { IDetailsTableData, IDetailsTableRowData } from ".";
+import { IAccidentsQuery } from "../IAccidentsQuery";
+import { QueryBuilder } from "../QueryBuilder";
 
 export class DetailsTableQuery {
 
-    private readonly repository: ITableRepository;
-    private readonly pageQuery: IAccidentsTablePageQuery;
+    private readonly repository: IAccidentsRepository;
+    private readonly query: IAccidentsQuery;
 
-    constructor(pageQuery: IAccidentsTablePageQuery) {
-        this.repository = new TableRepository();
-        this.pageQuery = pageQuery;
+    constructor(query: IAccidentsQuery) {
+        this.repository = new AccidentsRepository();
+        this.query = query;
     }
 
     public async execute(): Promise<IDetailsTableData> {
         let page: number = 0;
-        let limit: number = 25;
+        let limit: number = 15;
+        const filterQuery: string = new QueryBuilder(this.query).build();
         try {
-            page = this.pageQuery.page;
-            limit = this.pageQuery.limit;
+            if (this.query.limit !== undefined)
+                limit = this.query.pageLimit;
+            if (this.query.page !== undefined)
+                page = this.query.page;
+
         }
         catch{ }
-        const queryResult: ITableRowData[] = await this.repository.getAccidentsDetailsTable(page, limit);
+        const queryResult: ITableRowData[] = await this.repository.getAccidentsDetails(filterQuery, page, limit);
         const tableData: IDetailsTableData = {
             table_data: queryResult.map(row => {
-                const header: IDetailsTableRowData[] = TableRowHeaderKeys.map(key => {
+                const header: IDetailsTableRowData[] = TableRowHeaderDataKeys.map(key => {
                     return { title: key, content: row[key] };
                 });
-                const expand: IDetailsTableRowData[] = TableRowExpandKeys.map(key => {
+                const expand: IDetailsTableRowData[] = TableRowExpandDataKeys.map(key => {
                     return { title: key, content: row[key] };
                 })
                 return { header_info: header, expand_info: expand };

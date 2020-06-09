@@ -1,15 +1,19 @@
 import { Modal } from "../../modals-scripts.js";
 import { MapStyle } from "./map-style.js"
-import { BubbleChartData } from "../statistics/charts/bubble-chart/bubble-chart-data.js"
+import { Request } from "./../../services/request.js"
 
-window.onload = (event) => {
+
+window.onload = async (event) => {
     Modal.init();
     insertMapScript();
 };
 
 
 
-window.initMap = function initMap() {
+window.initMap = async function initMap() {
+
+    const heatMapData = await getHeatMapData();
+    console.log(heatMapData);
 
     const styledMapType = new google.maps.StyledMapType(MapStyle);
     window.map = new google.maps.Map(document.getElementById('map'), {
@@ -25,7 +29,7 @@ window.initMap = function initMap() {
     map.setMapTypeId('styled_map');
 
     const heatmap = new google.maps.visualization.HeatmapLayer({
-        data: getHeatMapData(),
+        data: heatMapData,
         gradient: ["rgba(20, 160, 152, 0)",
             "rgba(20,160,152,0.6979166666666667)",
             "rgba(20,160,152,0.8855917366946778)",
@@ -42,13 +46,18 @@ function insertMapScript() {
     document.body.appendChild(script);
 }
 
-function getHeatMapData() {
-    const heatmapData = [];
-    for (let i = 1; i < BubbleChartData.length; i++) {
+async function getHeatMapData() {
+    const heatMapPoints = [];
+    const req = new Request("GET", "http://localhost:5000/accidents/heat-map");
+    const reqData = await req.getData();
+    const heatMapData = reqData.heatMapData;
+
+    for (let i = 1; i < heatMapData.length; i++) {
         let accidentData = new Object();
-        accidentData.location = new google.maps.LatLng(BubbleChartData[i][2], BubbleChartData[i][1]);
-        accidentData.weight = BubbleChartData[i][4];
-        heatmapData.push(accidentData);
+        accidentData.location = new google.maps.LatLng(heatMapData[i][1], heatMapData[i][0]);
+        accidentData.weight = heatMapData[i][2];
+        heatMapPoints.push(accidentData);
     }
-    return heatmapData;
+
+    return heatMapPoints;
 }

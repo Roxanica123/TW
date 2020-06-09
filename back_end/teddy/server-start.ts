@@ -4,7 +4,8 @@ import { Server } from '.';
 import { Handler } from "./handlers";
 import { TeddyConnection } from "./db/teddy-connection";
 import { Database } from "../src/persistence/table-creation/database";
-import { Connection } from "../src/persistence/Connection";
+import { Connection } from "../src/persistence";
+
 
 export function start(app: Application): void {
     

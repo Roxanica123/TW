@@ -37,5 +37,4 @@ export const BubbleChartOptions = {
             scrollArrows: { inactiveColor: "#cccccc", activeColor: "#cccccc" },
             pagingTextStyle: { color: '#cccccc', fontName: 'Segoe UI' }
         }
-        //explorer: {}
     };

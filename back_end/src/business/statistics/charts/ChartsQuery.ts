@@ -1,15 +1,16 @@
-import { IAccidentsLimitQuery } from "../../IAccidentsLimitQuery";
 import { ChartRepositoryFactory } from "../../../domain/repositories";
 import { IChartsData, IChart, ChartsIdValues, IChartDataColumnValues, ChartsTextValues } from "./data-types";
 import { IChartDataRow } from "../../../domain/entities";
+import { IAccidentsQuery } from "../../IAccidentsQuery";
+import { QueryBuilder } from "../../QueryBuilder";
 
 export class ChartsQuery {
     private readonly repositoryFactory: ChartRepositoryFactory;
-    private readonly limitQuery: IAccidentsLimitQuery;
+    private readonly query: IAccidentsQuery;
 
-    constructor(limitQuery: IAccidentsLimitQuery) {
+    constructor(query: IAccidentsQuery) {
         this.repositoryFactory = new ChartRepositoryFactory();
-        this.limitQuery = limitQuery;
+        this.query = query;
     }
 
     public async execute(): Promise<IChartsData> {
@@ -21,12 +22,14 @@ export class ChartsQuery {
         };
     }
     private async getChart(chartName: string): Promise<IChart> {
-        let limit: number = 100;
+        const filterQuery: string = new QueryBuilder(this.query).build();
+        let limit: number = 500;
         try {
-            limit = this.limitQuery.limit;
+            if (this.query.limit !== undefined)
+                limit = this.query.limit;
         }
         catch{ }
-        const rows: IChartDataRow[] = await this.repositoryFactory[chartName as keyof ChartRepositoryFactory].call(null).getChartData(limit);
+        const rows: IChartDataRow[] = await this.repositoryFactory[chartName as keyof ChartRepositoryFactory].call(null).getChartData(filterQuery, limit);
         return {
             id: ChartsIdValues[chartName as keyof ChartsIdValues],
             data: {
