@@ -1,9 +1,11 @@
 import { start } from "../teddy/server-start";
 import { AccidentsController } from "./presentation/AccidentsController";
+import { AuthController } from "./presentation/AuthController";
 
 start({
     controllers: [
         AccidentsController,
+        AuthController
     ],
     databaseOptions: {
         host: 'localhost',
