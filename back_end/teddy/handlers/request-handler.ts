@@ -11,14 +11,17 @@ export class RequestHandler {
         this.methodName = methodName;
     }
 
+
     public async execute(request: IncomingMessage): Promise<HttpActionResult> {
         const controller: any = new this.constructorFunction();
         let bodyString: string = "";
-        let body: any = {};
-
-        request.on('data', chunk => bodyString = bodyString + chunk);
-        request.on('end', () => { body = JSON.parse(bodyString !== "" ? bodyString : "{}"); });
-
+        let body: any = new Promise((resolve, reject) => {
+            request.on('data', chunk => { bodyString = bodyString + chunk; });
+            request.on('end', () => {
+                resolve(JSON.parse(bodyString !== "" ? bodyString : "{}"))
+            });
+        });
+        body = await body;
         const urlParams = parse(request.url ? request.url : "").query?.split('&')
             .map(element => {
                 const pair: string[] = element.split('=');
