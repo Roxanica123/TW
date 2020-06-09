@@ -2,13 +2,13 @@ import { IHeatMapCoordinates, IBubbleChartPoint, ITableRowData, IChartDataRow } 
 
 export interface IAccidentsRepository {
 
-    getAccidentsCoordinates(limit: number): Promise<IHeatMapCoordinates[]>;
-    getAccidentsLocationInfo(limit: number): Promise<IBubbleChartPoint[]>;
-    getAccidentsDetails(page: number, limit: number): Promise<ITableRowData[]>;
-    getAccidentsDaysOfWeekDistribution(limit: number): Promise<IChartDataRow[]>;
-    getAccidentsPointsOfInterestDistribution(limit: number): Promise<IChartDataRow[]>;
-    getAccidentsSeverityDistribution(limit: number): Promise<IChartDataRow[]>;
-    getAccidentsStateDistribution(limit: number): Promise<IChartDataRow[]>;
-    getAccidentsTimeOfDayDistribution(limit: number): Promise<IChartDataRow[]>;
-    getAccidentsWeatherCondition(limit: number): Promise<IChartDataRow[]>;
+    getAccidentsCoordinates(filterQuery: string, limit: number): Promise<IHeatMapCoordinates[]>;
+    getAccidentsLocationInfo(filterQuery: string, limit: number): Promise<IBubbleChartPoint[]>;
+    getAccidentsDetails(filterQuery: string, page: number, limit: number): Promise<ITableRowData[]>;
+    getAccidentsDaysOfWeekDistribution(filterQuery: string, limit: number): Promise<IChartDataRow[]>;
+    getAccidentsPointsOfInterestDistribution(filterQuery: string, limit: number): Promise<IChartDataRow[]>;
+    getAccidentsSeverityDistribution(filterQuery: string, limit: number): Promise<IChartDataRow[]>;
+    getAccidentsStateDistribution(filterQuery: string, limit: number): Promise<IChartDataRow[]>;
+    getAccidentsTimeOfDayDistribution(filterQuery: string, limit: number): Promise<IChartDataRow[]>;
+    getAccidentsWeatherCondition(filterQuery: string, limit: number): Promise<IChartDataRow[]>;
 }

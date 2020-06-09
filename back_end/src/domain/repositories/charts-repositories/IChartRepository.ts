@@ -1,5 +1,5 @@
 import { IChartDataRow } from "../../entities";
 
 export interface IChartRepository {
-    getChartData(limit: number): Promise<IChartDataRow[]>;
+    getChartData(filterQuery: string, limit: number): Promise<IChartDataRow[]>;
 }

@@ -1,26 +1,29 @@
-import { IAccidentsLimitQuery } from "../../IAccidentsLimitQuery";
-import { IAccidentsRepository, AccidentsRepository} from "../../../domain/repositories";
+import { IAccidentsRepository, AccidentsRepository } from "../../../domain/repositories";
 import { IBubbleChartData } from ".";
 import { IBubbleChartPoint, IBubbleChartPointKeys } from "../../../domain/entities";
+import { IAccidentsQuery } from "../../IAccidentsQuery";
+import { QueryBuilder } from "../../QueryBuilder";
 
 export class BubbleChartQuery {
     private readonly repository: IAccidentsRepository;
-    private readonly limitQuery: IAccidentsLimitQuery;
+    private readonly query: IAccidentsQuery;
 
-    constructor(limitQuery: IAccidentsLimitQuery) {
+    constructor(query: IAccidentsQuery) {
         this.repository = new AccidentsRepository();
-        this.limitQuery = limitQuery;
+        this.query = query;
     }
 
     public async execute(): Promise<IBubbleChartData> {
         let limit: number = 500;
+        const filterQuery: string = new QueryBuilder(this.query).build();
         try {
-            limit = this.limitQuery.limit;
+            if (this.query.limit !== undefined)
+                limit = this.query.limit;
         }
         catch{ }
-        const queryResult: IBubbleChartPoint[] = await this.repository.getAccidentsLocationInfo(limit);
+        const queryResult: IBubbleChartPoint[] = await this.repository.getAccidentsLocationInfo(filterQuery, limit);
         return {
-            bubbleChartData: [IBubbleChartPointKeys].concat(queryResult.map(point => [point.id.toString(), point.start_lng, point.start_lat, point.state ,point.severity]))
+            bubbleChartData: [IBubbleChartPointKeys].concat(queryResult.map(point => [point.id.toString(), point.start_lng, point.start_lat, point.state, point.severity]))
         };
     }
 }
