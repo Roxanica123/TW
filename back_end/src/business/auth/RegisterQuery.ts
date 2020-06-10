@@ -18,13 +18,11 @@ export class RegisterQuery {
         const email = this.body.email;
 
         let user = await this.userRepository.insertUser(username, email, password);
-        console.log(user);
         if (user) {
-            
-            let passwordToken = jwt.sign({username:user.username,email:user.email}, secret);
+            let passwordToken = jwt.sign({ username: user.username, email: user.email }, secret);
             return passwordToken;
         }
-        else {   
+        else {
             return null;
         }
 

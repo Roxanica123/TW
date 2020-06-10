@@ -16,7 +16,7 @@ export class DetailsTableQuery {
 
     public async execute(): Promise<IDetailsTableData> {
         let page: number = 0;
-        let limit: number = 15;
+        let limit: number = 10;
         const filterQuery: string = new QueryBuilder(this.query).build();
         try {
             if (this.query.limit !== undefined)

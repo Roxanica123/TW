@@ -8,7 +8,7 @@ import { Ok, NotFound } from "../../teddy/action-results";
 export class AuthController {
 
     @HttpPost('/login')
-    public async login(query: any, body: IUser) {
+    public async login(_query: any, body: IUser) {
         const loginQuery = new LoginQuery(body);
         const token = await loginQuery.execute();
         if (token)
@@ -18,7 +18,7 @@ export class AuthController {
     }
 
     @HttpPost('/register')
-    public async register(query: any, body: IUser) {
+    public async register(_query: any, body: IUser) {
         const registerQuery = new RegisterQuery(body);
         const user = await registerQuery.execute();
         if (user)
