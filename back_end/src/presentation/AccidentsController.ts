@@ -2,9 +2,8 @@ import { HttpActionResult, Ok, NoContent } from "../../teddy/action-results";
 import { Controller, HttpDelete, HttpPost, HttpGet } from "../../teddy/decorators";
 import { HeatMapQuery, IHeatMapData } from "../business/heat-map";
 import { ChartsQuery, IBubbleChartData, BubbleChartQuery, IChartsData } from "../business/statistics";
-import { DetailsTableQuery } from "../business/details/DetailsTableQuery";
-import { IDetailsTableData } from "../business/details";
-import { IAccidentsQuery } from "../business/IAccidentsQuery";
+import { IDetailsTableData, DetailsTableQuery } from "../business/details";
+import { IAccidentsQuery } from "../business";
 
 @Controller('/accidents')
 export class AccidentsController {

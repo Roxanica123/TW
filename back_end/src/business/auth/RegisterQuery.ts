@@ -1,6 +1,5 @@
-import { IUserRepository } from "../../domain/repositories/IUserRepository"
+import { IUserRepository, UserRepository } from "../../domain/repositories"
 import { IUser } from "../../domain/entities";
-import { UserRepository } from "../../domain/repositories/UserRepository";
 
 const secret = 'secret discret:)';
 

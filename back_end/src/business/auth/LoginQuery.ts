@@ -1,6 +1,5 @@
-import { IUserRepository } from "../../domain/repositories/IUserRepository"
+import { IUserRepository, UserRepository } from "../../domain/repositories"
 import { IUser } from "../../domain/entities";
-import { UserRepository } from "../../domain/repositories/UserRepository";
 
 const secret = 'secret discret:)';
 
@@ -16,20 +15,19 @@ export class LoginQuery {
         const username = this.body.username;
         const password = this.body.password;
         const user = await this.userRepository.findByUsername(username)
-        if(user)
-        {
-            if(password === user.password) // combinatie buna
+        if (user) {
+            if (password === user.password) // combinatie buna
             {
-                let passwordToken = jwt.sign({username:user.username,email:user.email}, secret);
+                let passwordToken = jwt.sign({ username: user.username, email: user.email }, secret);
                 return passwordToken;
             }
             else // username bun parola proasta
             {
                 return null;
             }
-            
+
         }
-        else{ // nu exista userul
+        else { // nu exista userul
             return null;
         }
     }
