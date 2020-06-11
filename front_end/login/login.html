@@ -50,36 +50,42 @@
         </div>
         <div>
           <form id="login"
-            class="input">
-            <input type="text"
-              class="input-field"
-              placeholder="username"
-              required>
-            <input type="text"
-              class="input-field"
-              placeholder="password"
-              required>
-            <button type="submit"
-              class="submit-btn"
-              onclick="submit()">Log In</button>
-          </form>
-          <form id="register"
-            class="input">
-            <input type="text"
-              class="input-field"
-              placeholder="username"
-              required>
-            <input type="text"
-              class="input-field"
-              placeholder="email"
-              required>
-            <input type="text"
-              class="input-field"
-              placeholder="password"
-              required>
-            <button type="submit"
-              class="submit-btn">Sign Up</button>
-          </form>
+          class="input">
+          <input id="usernameLogin"
+            type="text"
+            class="input-field"
+            placeholder="username"
+            required>
+          <input id="passwordLogin"
+            type="text"
+            class="input-field"
+            placeholder="password"
+            required>
+          <button type="submit"
+            class="submit-btn"
+            onclick="submitLogin()">Log In</button>
+        </form>
+        <form id="register"
+          class="input">
+          <input id="usernameRegister"
+            type="text"
+            class="input-field"
+            placeholder="username"
+            required>
+          <input id="emailRegister"
+            type="text"
+            class="input-field"
+            placeholder="email"
+            required>
+          <input id="passwordRegister"
+            type="text"
+            class="input-field"
+            placeholder="password"
+            required>
+          <button type="submit"
+            class="submit-btn"
+            onclick="submitRegister()">Sign Up</button>
+        </form>
         </div>
       </div>
     </div>
@@ -99,6 +105,48 @@
         buttonLogin.style.left = "-400px";
         buttonSignUp.style.left = "50px";
         buttonSubmit.style.left = "110px";
+      }
+
+    
+    function submitLogin() {
+        const username = document.getElementById("usernameLogin").value;
+        const password = document.getElementById("passwordLogin").value;
+
+        fetch('http://localhost:5000/auth/login', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({ username: username, password: password })
+        })
+          .then(response => response.json())
+          .then(body => {
+            console.log(body);
+            if (body.token) {
+              document.cookie = `jwt=${body.token}`;
+            }
+          })
+      }
+      
+      function submitRegister() {
+        const username = document.getElementById("usernameRegister").value;
+        const email = document.getElementById("emailRegister").value;
+        const password = document.getElementById("passwordRegister").value;
+
+        fetch('http://localhost:5000/auth/login', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({ username: username, email: email, password: password })
+        })
+          .then(response => response.json())
+          .then(body => {
+            console.log(body);
+            if (body.token) {
+              document.cookie = `jwt=${body.token}`;
+            }
+          })
       }
 
     </script>
