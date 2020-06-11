@@ -1,7 +1,7 @@
 import { Modal } from "../../modals-scripts.js";
 import { MapStyle } from "./map-style.js"
 import { Request } from "./../../services/request.js"
-
+import { FiltersQuery } from "../../services/filters-query.js";
 
 window.onload = async (event) => {
     Modal.init();
@@ -13,7 +13,6 @@ window.onload = async (event) => {
 window.initMap = async function initMap() {
 
     const heatMapData = await getHeatMapData();
-    console.log(heatMapData);
 
     const styledMapType = new google.maps.StyledMapType(MapStyle);
     window.map = new google.maps.Map(document.getElementById('map'), {
@@ -48,10 +47,9 @@ function insertMapScript() {
 
 async function getHeatMapData() {
     const heatMapPoints = [];
-    const req = new Request("GET", "http://localhost:5000/accidents/heat-map");
+    const req = new Request("GET", `http://localhost:5000/accidents/heat-map?${FiltersQuery.queryInstance.getQueryString()}`);
     const reqData = await req.getData();
     const heatMapData = reqData.heatMapData;
-
     for (let i = 1; i < heatMapData.length; i++) {
         let accidentData = new Object();
         accidentData.location = new google.maps.LatLng(heatMapData[i][1], heatMapData[i][0]);

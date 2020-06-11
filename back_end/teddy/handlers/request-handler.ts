@@ -15,7 +15,7 @@ export class RequestHandler {
     public async execute(request: IncomingMessage): Promise<HttpActionResult> {
         const controller: any = new this.constructorFunction();
         let bodyString: string = "";
-        let body: any = new Promise((resolve, reject) => {
+        let body: any = new Promise((resolve) => {
             request.on('data', chunk => { bodyString = bodyString + chunk; });
             request.on('end', () => {
                 resolve(JSON.parse(bodyString !== "" ? bodyString : "{}"))

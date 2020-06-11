@@ -15,13 +15,7 @@ export class EvolutionQuery {
     }
 
     public async execute(): Promise<IEvolutionData> {
-        let limit: number = 1000;
         const filterQuery: string = new QueryBuilder(this.query).build();
-        try {
-            if (this.query.limit !== undefined)
-                limit = this.query.limit;
-        }
-        catch{ }
         const queryResult: IEvolutionDate[] = await this.repository.getEvolutionDate(filterQuery);
         return { evolutionData: queryResult };
     }
