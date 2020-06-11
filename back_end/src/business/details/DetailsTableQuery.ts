@@ -1,8 +1,7 @@
 import { ITableRowData, TableRowHeaderDataKeys, TableRowExpandDataKeys } from "../../domain/entities";
 import { IAccidentsRepository, AccidentsRepository } from "../../domain/repositories";
 import { IDetailsTableData, IDetailsTableRowData } from ".";
-import { IAccidentsQuery } from "../IAccidentsQuery";
-import { QueryBuilder } from "../QueryBuilder";
+import { QueryBuilder, IAccidentsQuery } from "..";
 
 export class DetailsTableQuery {
 
@@ -16,14 +15,13 @@ export class DetailsTableQuery {
 
     public async execute(): Promise<IDetailsTableData> {
         let page: number = 0;
-        let limit: number = 15;
+        let limit: number = 10;
         const filterQuery: string = new QueryBuilder(this.query).build();
         try {
-            if (this.query.limit !== undefined)
+            if (this.query.pageLimit !== undefined)
                 limit = this.query.pageLimit;
             if (this.query.page !== undefined)
                 page = this.query.page;
-
         }
         catch{ }
         const queryResult: ITableRowData[] = await this.repository.getAccidentsDetails(filterQuery, page, limit);

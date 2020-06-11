@@ -1,4 +1,4 @@
-export interface IAuthBody{
-    email:string;
-    password:string;
+export interface IAuthBody {
+    email: string;
+    password: string;
 }

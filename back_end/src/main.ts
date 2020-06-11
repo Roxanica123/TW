@@ -1,6 +1,6 @@
 import { start } from "../teddy/server-start";
-import { AccidentsController } from "./presentation/AccidentsController";
-import { AuthController } from "./presentation/AuthController";
+import { AccidentsController, AuthController } from "./presentation";
+
 
 start({
     controllers: [

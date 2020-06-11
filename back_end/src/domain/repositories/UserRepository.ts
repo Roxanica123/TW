@@ -22,8 +22,8 @@ export class UserRepository implements IUserRepository {
         if (existentUser !== null)
             return null;
         const query: string = ` insert into users (username, email, password) values ('${username}', '${email}', '${password}')`;
-        const user: IUser[] = await this.connection.execute(query);
-        const createdUser =  await this.findByUsername(username);
+        await this.connection.execute(query);
+        const createdUser = await this.findByUsername(username);
         return createdUser;
     }
 
