@@ -13,7 +13,6 @@ window.onload = async (event) => {
 window.initMap = async function initMap() {
 
     const heatMapData = await getHeatMapData();
-    console.log(heatMapData);
 
     const styledMapType = new google.maps.StyledMapType(MapStyle);
     window.map = new google.maps.Map(document.getElementById('map'), {
