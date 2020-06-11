@@ -1,12 +1,20 @@
 import { IAccidentsRepository } from "./IAccidentsRepository";
 import { IHeatMapCoordinates, IBubbleChartPoint, ITableRowData, IChartDataRow } from "../entities";
 import { Connection } from "../../persistence";
+import { IEvolutionDate } from "../entities/IEvolutionDate";
 
 export class AccidentsRepository implements IAccidentsRepository {
     private readonly connection: Connection;
 
     constructor() {
         this.connection = new Connection();
+    }
+
+    async getEvolutionDate(filterQuery: string): Promise<IEvolutionDate[]> {
+        const query: string = `SELECT YEAR(start_time) AS 'year', MONTH(start_time) AS 'month', DAY(start_time) AS 'day', count('^') AS 'number'
+        FROM accidents ${filterQuery} GROUP BY YEAR(start_time), MONTH(start_time), DAY(start_time);`;
+        const rows: IEvolutionDate[] = await this.connection.execute(query);
+        return rows;
     }
 
     async getAccidentsDaysOfWeekDistribution(filterQuery: string, limit: number): Promise<IChartDataRow[]> {

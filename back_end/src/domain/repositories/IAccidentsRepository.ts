@@ -1,7 +1,9 @@
 import { IHeatMapCoordinates, IBubbleChartPoint, ITableRowData, IChartDataRow } from "../entities";
+import { IEvolutionDate } from "../entities/IEvolutionDate";
 
 export interface IAccidentsRepository {
 
+    getEvolutionDate(filterQuery: string): Promise<IEvolutionDate[]>;
     getAccidentsCoordinates(filterQuery: string, limit: number): Promise<IHeatMapCoordinates[]>;
     getAccidentsLocationInfo(filterQuery: string, limit: number): Promise<IBubbleChartPoint[]>;
     getAccidentsDetails(filterQuery: string, page: number, limit: number): Promise<ITableRowData[]>;
