@@ -1,4 +1,5 @@
 import { Request } from "../../../services/request.js"
+import { FiltersQuery } from "./../../../services/filters-query.js"
 
 /*( ಠ _ ಠ )*/
 
@@ -9,7 +10,7 @@ export class Table {
     numberOfRecords = 1000;
     pageLimit = 10;
     async initTableData() {
-        const req = new Request("GET", `http://localhost:5000/accidents/details?page=${this.page}&pageLimit=${this.pageLimit}`);
+        const req = new Request("GET", `http://localhost:5000/accidents/details?page=${this.page}&pageLimit=${this.pageLimit}&${FiltersQuery.queryInstance.getQueryString()}`);
         const reqData = await req.getData();
         this.tableData = reqData.table_data;
     }
