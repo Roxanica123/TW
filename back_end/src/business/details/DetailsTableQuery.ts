@@ -18,11 +18,10 @@ export class DetailsTableQuery {
         let limit: number = 10;
         const filterQuery: string = new QueryBuilder(this.query).build();
         try {
-            if (this.query.limit !== undefined)
+            if (this.query.pageLimit !== undefined)
                 limit = this.query.pageLimit;
             if (this.query.page !== undefined)
                 page = this.query.page;
-
         }
         catch{ }
         const queryResult: ITableRowData[] = await this.repository.getAccidentsDetails(filterQuery, page, limit);
