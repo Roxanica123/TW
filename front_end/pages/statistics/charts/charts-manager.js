@@ -1,6 +1,7 @@
 import { Chart } from "./chart.js";
 import { BubbleChartOptions } from "./bubble-chart/bubble-chart-options.js"
 import { Request } from "./../../../services/request.js"
+import { FiltersQuery } from "./../../../services/filters-query.js"
 google.charts.load("current", { packages: ["corechart"] });
 
 export class ChartsManager {
@@ -13,7 +14,7 @@ export class ChartsManager {
 
         let index = 0;
 
-        const req = new Request("GET", "http://localhost:5000/accidents/statistics/charts");
+        const req = new Request("GET", `http://localhost:5000/accidents/statistics/charts?${FiltersQuery.queryInstance.getQueryString()}`);
         req.getData().then(resultData => {
             resultData = resultData.chartsData;
             resultData.forEach(element => {
@@ -70,7 +71,7 @@ export class ChartsManager {
         }*/
     }
     static drawBubbleChart() {
-        const req = new Request("GET", "http://localhost:5000/accidents/statistics/bubble-chart");
+        const req = new Request("GET", `http://localhost:5000/accidents/statistics/bubble-chart?${FiltersQuery.queryInstance.getQueryString()}`);
         req.getData().then(resultData => {
             resultData = resultData.bubbleChartData;
             const data = google.visualization.arrayToDataTable(resultData);

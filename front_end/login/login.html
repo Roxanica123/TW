@@ -5,12 +5,17 @@
   <meta charset="UTF-8" />
   <meta name="viewport"
     content="width=device-width, initial-scale=1.0" />
+  <link rel='shortcut icon'
+    type='image/x-icon'
+    href='../../images/favicon.ico' />
   <title>US Accidents Smart Visualizer</title>
   <link rel="stylesheet"
     media="(min-width: 640px)"
     href="../styles.css" />
   <link rel="stylesheet"
     href="./login.css">
+  <link rel="stylesheet"
+    href="../../pop-ups/pop-ups.css">
 </head>
 
 <body>
@@ -24,7 +29,7 @@
 
       <nav class="header-nav">
         <ul>
-          <li class="item1"><a href="../pages/main-map/main-map.html">Map</a></li>
+          <li class="item1"><a href="../../">Map</a></li>
           <li class="item2"><a href="../pages/statistics/statistics.html">Statistics</a></li>
           <li class="item3"><a href="../pages/evolution/evolution.html">Evolution</a></li>
           <li class="item4"><a href="../pages/details/details.html">Accidents details</a></li>
@@ -36,49 +41,73 @@
       <div class="form-box">
         <div class="button-box">
           <div id="btn"></div>
-            <button type="button" class="toggle-button" onclick="login()">Log In</button>
-            <button type="button" class="toggle-button" onclick="signup()">Sign Up</button>
+          <button type="button"
+            class="toggle-button"
+            onclick="login()">Log In</button>
+          <button type="button"
+            class="toggle-button"
+            onclick="signup()">Sign Up</button>
         </div>
         <div>
-          <form id="login" class="input">
-            <input type="text" class="input-field" placeholder="username" required>
-            <input type="text" class="input-field" placeholder="password" required>
-            <button type="submit" class="submit-btn" onclick="submit()">Log In</button>
+          <form id="login"
+            class="input">
+            <input type="text"
+              class="input-field"
+              placeholder="username"
+              required>
+            <input type="text"
+              class="input-field"
+              placeholder="password"
+              required>
+            <button type="submit"
+              class="submit-btn"
+              onclick="submit()">Log In</button>
           </form>
-          <form id="register" class="input">
-            <input type="text" class="input-field" placeholder="username" required>
-            <input type="text" class="input-field" placeholder="email" required>
-            <input type="text" class="input-field" placeholder="password" required>
-            <button type="submit" class="submit-btn">Sign Up</button>
+          <form id="register"
+            class="input">
+            <input type="text"
+              class="input-field"
+              placeholder="username"
+              required>
+            <input type="text"
+              class="input-field"
+              placeholder="email"
+              required>
+            <input type="text"
+              class="input-field"
+              placeholder="password"
+              required>
+            <button type="submit"
+              class="submit-btn">Sign Up</button>
           </form>
         </div>
       </div>
     </div>
 
     <script>
-    var buttonLogin = document.getElementById("login");
-    var buttonSignUp = document.getElementById("register");
-    var buttonSubmit = document.getElementById("btn");
+      var buttonLogin = document.getElementById("login");
+      var buttonSignUp = document.getElementById("register");
+      var buttonSubmit = document.getElementById("btn");
 
-    function login() {
-      buttonLogin.style.left = "50px";
-      buttonSignUp.style.left = "450px";
-      buttonSubmit.style.left = "0";
-    }
+      function login() {
+        buttonLogin.style.left = "50px";
+        buttonSignUp.style.left = "450px";
+        buttonSubmit.style.left = "0";
+      }
 
-    function signup() {
-      buttonLogin.style.left = "-400px";
-      buttonSignUp.style.left = "50px";
-      buttonSubmit.style.left = "110px";
-    }
+      function signup() {
+        buttonLogin.style.left = "-400px";
+        buttonSignUp.style.left = "50px";
+        buttonSubmit.style.left = "110px";
+      }
 
     </script>
 
     <footer>
       <nav class="footer-nav">
         <ul>
-          <li><a href="../pages/statistics/statistics.html"
-            id="login-button">Login</a></li>
+          <li><a href="./login.html"
+              id="login-button">Login</a></li>
           <li><a href="#"
               id="fillter-button">Filters</a></li>
           <li><a href="#">Reset</a></li>
@@ -104,7 +133,7 @@
       <p>Aici punem fielduri.</p>
     </div>
   </div>
-  
+
 
   <div class="modal"
     id="modal-download">
@@ -113,8 +142,9 @@
       <p>Aici punem optiunile de downloadare.</p>
     </div>
   </div>
-  
-  <script src="../modals-scripts.js"></script>
+
+  <script type="module"
+    src="./login.js"></script>
 </body>
 
 </html>
