@@ -2,6 +2,7 @@ import { IUserRepository } from "../../domain/repositories"
 import { IUser } from "../../domain/entities";
 import { UserRepository } from "../../persistence/repositories";
 import * as jwt from "jsonwebtoken";
+import * as crypto from "crypto"
 
 const secret = 'secret discret:)';
 
@@ -15,9 +16,12 @@ export class FindUserQuery {
     public async execute() {
         const username = this.body.username;
         const password = this.body.password;
+        const hmac = crypto.createHmac('sha256', secret);
+
+        hmac.update(password);
         const user = await this.userRepository.findByUsername(username)
         if (user) {
-            if (password === user.password) {
+            if (hmac.digest('hex') === user.password) {
                 let passwordToken = jwt.sign({ username: user.username, email: user.email }, secret);
                 return passwordToken;
             }
