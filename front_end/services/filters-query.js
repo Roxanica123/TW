@@ -7,7 +7,7 @@ export class FiltersQuery {
     severity;
     weather_condition;
     constructor() {
-        this.limit = 2000;
+        this.limit = 10;
         this.point_of_interest = undefined;
         this.start_date = undefined;
         this.end_date = undefined;

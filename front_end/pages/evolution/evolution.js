@@ -1,3 +1,7 @@
+import { Request } from "./../../services/request.js"
+import { FiltersQuery } from "../../services/filters-query.js";
+import { Modal } from "../../modals-scripts.js";
+
 google.charts.load('current', {packages: ['corechart', 'line']});
 google.charts.setOnLoadCallback(drawLogScales);
 
@@ -5,16 +9,26 @@ window.onresize = (event) => {
     drawLogScales();
   };
 
-function drawLogScales() {
+async function getData() {
+  const dates = [];
+  const req = new Request("GET", `http://localhost:5000/accidents/evolution?${FiltersQuery.queryInstance.getQueryString()}`);
+  const requestedData = await req.getData();
+  const evolutionData = requestedData.evolutionData;
+  console.log(evolutionData);
+  evolutionData.forEach(element => {
+    dates.push([new Date(element.year, element.month, element.day), element.number]);
+  });
+
+  return dates;
+}
+
+async function drawLogScales() {
       var data = new google.visualization.DataTable();
       data.addColumn('date', 'X');
       data.addColumn('number', 'Accidents');
 
-      data.addRows([
-        [new Date(1990, 0), 73],    [new Date(1993, 0), 67],   [new Date(1996, 0), 80],  [new Date(1999, 0), 99],   [new Date(2002, 0), 103],  [new Date(2005, 0), 86],
-        [new Date(2008, 0), 89],    [new Date(2011, 0), 67], [new Date(2014, 0), 102], [new Date(2017, 0), 90], [new Date(2019, 0), 145]
-       
-      ]);
+      const dates = await getData();
+      data.addRows(dates);
 
       var options = {
         annotations: {
@@ -49,8 +63,11 @@ function drawLogScales() {
       chart.draw(data, options);
     }
     
-window.onload = function() {
-    drawLogScales();
+window.onload = async function(){
+  console.log("aici");
+  Modal.init();
+    
+    await drawLogScales();
     var modalFilter = document.getElementById("modal-filter");
     var buttonFilter = document.getElementById("fillter-button");
     var closeFilter = document.getElementsByClassName("close")[0];

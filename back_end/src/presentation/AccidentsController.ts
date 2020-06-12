@@ -2,11 +2,19 @@ import { HttpActionResult, Ok, NoContent } from "../../teddy/action-results";
 import { Controller, HttpDelete, HttpPost, HttpGet } from "../../teddy/decorators";
 import { HeatMapQuery, IHeatMapData } from "../business/heat-map";
 import { ChartsQuery, IBubbleChartData, BubbleChartQuery, IChartsData } from "../business/statistics";
-import { IDetailsTableData, DetailsTableQuery } from "../business/details";
-import { IAccidentsQuery } from "../business";
+import { DetailsTableQuery } from "../business/details/DetailsTableQuery";
+import { IDetailsTableData } from "../business/details";
+import { IAccidentsQuery } from "../business/IAccidentsQuery";
+import { IEvolutionData, EvolutionQuery } from "../business/evolution";
 
 @Controller('/accidents')
 export class AccidentsController {
+
+    @HttpGet("/evolution")
+    public async getEvolutionData(query: IAccidentsQuery): Promise<HttpActionResult> {
+        const result: IEvolutionData = await new EvolutionQuery(query).execute();
+        return new Ok(JSON.stringify(result));
+    }
 
     @HttpGet("/heat-map")
     public async getHeatMap(query: IAccidentsQuery): Promise<HttpActionResult> {
