@@ -1,8 +1,8 @@
-import { ChartRepositoryFactory } from "../../../domain/repositories";
 import { IChartsData, IChart, ChartsIdValues, IChartDataColumnValues, ChartsTextValues } from "./data-types";
 import { IChartDataRow } from "../../../domain/entities";
 import { IAccidentsQuery } from "../../IAccidentsQuery";
 import { QueryBuilder } from "../../QueryBuilder";
+import { ChartRepositoryFactory } from "../../../persistence/repositories";
 
 export class ChartsQuery {
     private readonly repositoryFactory: ChartRepositoryFactory;

@@ -1,6 +1,6 @@
-import { IChartRepository } from "./IChartRepository";
-import { Connection } from "../../../persistence";
-import { IChartDataRow } from "../../entities";
+import { IChartRepository } from "../../../domain/repositories/IChartRepository";
+import { Connection } from "../..";
+import { IChartDataRow } from "../../../domain/entities";
 
 export class PointOfInterestChartRepository implements IChartRepository {
     private readonly connection: Connection;

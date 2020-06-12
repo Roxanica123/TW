@@ -1,5 +1,3 @@
-export * from "./charts-repositories"
 export * from "./IAccidentsRepository"
-export * from "./AccidentsRepository"
 export * from "./IUserRepository"
-export * from "./UserRepository"
+export * from "./IChartRepository"

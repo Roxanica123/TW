@@ -1,7 +1,8 @@
-import { IAccidentsRepository, AccidentsRepository } from "../../../domain/repositories";
+import { IAccidentsRepository} from "../../../domain/repositories";
 import { IBubbleChartData } from ".";
 import { IBubbleChartPoint, IBubbleChartPointKeys } from "../../../domain/entities";
 import { QueryBuilder, IAccidentsQuery } from "../..";
+import { AccidentsRepository } from "../../../persistence/repositories";
 
 export class BubbleChartQuery {
     private readonly repository: IAccidentsRepository;

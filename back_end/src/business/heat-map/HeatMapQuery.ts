@@ -1,7 +1,8 @@
 import { IHeatMapCoordinates } from "../../domain/entities";
-import { IAccidentsRepository, AccidentsRepository } from "../../domain/repositories"
+import { IAccidentsRepository } from "../../domain/repositories"
 import { IHeatMapData } from "./IHeatMapData";
 import { QueryBuilder, IAccidentsQuery } from "..";
+import { AccidentsRepository } from "../../persistence/repositories";
 
 export class HeatMapQuery {
 
