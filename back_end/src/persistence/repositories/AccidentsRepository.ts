@@ -1,7 +1,6 @@
-import { IAccidentsRepository } from "./IAccidentsRepository";
-import { IHeatMapCoordinates, IBubbleChartPoint, ITableRowData, IChartDataRow } from "../entities";
-import { Connection } from "../../persistence";
-import { IEvolutionDate } from "../entities/IEvolutionDate";
+import { IAccidentsRepository } from "../../domain/repositories/IAccidentsRepository";
+import { IHeatMapCoordinates, IBubbleChartPoint, ITableRowData, IChartDataRow, IEvolutionDate } from "../../domain/entities";
+import { Connection } from "..";
 
 export class AccidentsRepository implements IAccidentsRepository {
     private readonly connection: Connection;

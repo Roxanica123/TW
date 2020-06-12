@@ -1,6 +1,6 @@
-import { IUserRepository } from "./IUserRepository";
-import { Connection } from "../../persistence";
-import { IUser } from "../entities";
+import { IUserRepository } from "../../domain/repositories/IUserRepository";
+import { Connection } from "..";
+import { IUser } from "../../domain/entities";
 
 export class UserRepository implements IUserRepository {
 

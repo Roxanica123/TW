@@ -1,6 +1,5 @@
 export * from "./ChartRepositoryFactory"
 export * from "./DayOfWeekChartRepository"
-export * from "./IChartRepository"
 export * from "./TimeOfDayChartRepository"
 export * from "./WeatherConditionChartRepository"
 export * from "./StateChartRepository"

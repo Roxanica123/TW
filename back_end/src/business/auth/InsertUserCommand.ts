@@ -1,9 +1,11 @@
-import { IUserRepository, UserRepository } from "../../domain/repositories"
+import { IUserRepository } from "../../domain/repositories"
 import { IUser } from "../../domain/entities";
+import { UserRepository } from "../../persistence/repositories";
+import * as jwt from "jsonwebtoken";
 
 const secret = 'secret discret:)';
 
-export class RegisterQuery {
+export class InsertUserCommand {
     private userRepository: IUserRepository;
     private body: IUser;
     constructor(body: IUser) {
@@ -11,7 +13,6 @@ export class RegisterQuery {
         this.body = body;
     }
     public async execute() {
-        let jwt = require('jsonwebtoken');
         const username = this.body.username;
         const password = this.body.password;
         const email = this.body.email;
