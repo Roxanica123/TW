@@ -1,7 +1,7 @@
 import { Controller, HttpPost } from "../../teddy/decorators";
 import { IUser } from "../domain/entities";
 import { FindUserQuery, InsertUserCommand } from "../business/auth";
-import { Ok, NotFound } from "../../teddy/action-results";
+import { Ok, Unauthorized, Created, BadRequest } from "../../teddy/action-results";
 
 @Controller('/auth')
 export class AuthController {
@@ -13,7 +13,7 @@ export class AuthController {
         if (token)
             return new Ok(JSON.stringify({ 'token': token }));
         else
-            return new NotFound(JSON.stringify({ 'message': 'Could not login' }));
+            return new Unauthorized(JSON.stringify({ 'response': 'Could not login' }));
     }
 
     @HttpPost('/register')
@@ -21,8 +21,8 @@ export class AuthController {
         const registerQuery = new InsertUserCommand(body);
         const user = await registerQuery.execute();
         if (user)
-            return new Ok(JSON.stringify({ 'token': user }));
+            return new Created(JSON.stringify({ 'token': user }));
         else
-            return new NotFound(JSON.stringify({ 'message': 'Could not register' }));
+            return new BadRequest(JSON.stringify({ 'message': 'Could not register' }));
     }
 }
