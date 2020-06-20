@@ -12,6 +12,8 @@
     "@types/node": "^13.13.4"
   },
   "dependencies": {
+    "@types/bcrypt": "^3.0.0",
+    "bcrypt": "^5.0.0",
     "bluebird": "^3.7.2",
     "csv-parse": "^4.9.1",
     "http": "0.0.1-security",

@@ -1,5 +1,6 @@
 import { IUserRepository, UserRepository } from "../../domain/repositories"
 import { IUser } from "../../domain/entities";
+import { hashSync } from "bcrypt"
 
 const secret = 'secret discret:)';
 
@@ -13,7 +14,7 @@ export class LoginQuery {
     public async execute() {
         let jwt = require('jsonwebtoken');
         const username = this.body.username;
-        const password = this.body.password;
+        const password = hashSync(this.body.password, 5);
         const user = await this.userRepository.findByUsername(username)
         if (user) {
             if (password === user.password) // combinatie buna
