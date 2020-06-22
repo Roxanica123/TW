@@ -1,7 +1,6 @@
 import { Controller, HttpPost, HttpGet, HttpDelete, HttpPut } from "../../teddy/decorators";
 import { IUser } from "../domain/entities";
 import UserRepository from "../domain/repositories/UserRepository"
-import {  RegisterQuery } from "../business/auth";
 import { Ok, NotFound } from "../../teddy/action-results";
 
 @Controller('/users')
@@ -20,10 +19,16 @@ export class UsersController {
 
     @HttpPost('/')
     public async post(_query: any, body: IUser) {
-        const registerQuery = new RegisterQuery(body);
-        const user = await registerQuery.execute();
+       
+        let repository = new UserRepository
+        const email = body.email
+        const password = body.password
+        const username = body.username
+
+        const user = await repository.insertUser(username, email, password);
+
         if (user)
-            return new Ok(JSON.stringify({ 'token': user }));
+            return new Ok(JSON.stringify({ 'massage': 'New user inserted' }));
         else
             return new NotFound(JSON.stringify({ 'message': 'Could not register' }));
     }
@@ -31,12 +36,14 @@ export class UsersController {
     
     @HttpPut('/')
     public async put(_query: any, body: IUser) {
-        const registerQuery = new RegisterQuery(body);
-        const user = await registerQuery.execute();
+
+        let repository = new UserRepository
+        const user = await repository.updateUser(body)
+
         if (user)
-            return new Ok(JSON.stringify({ 'token': user }));
+            return new Ok(JSON.stringify({ 'message': 'User updated' }));
         else
-            return new NotFound(JSON.stringify({ 'message': 'Could not register' }));
+            return new NotFound(JSON.stringify({ 'message': 'Could not update the user' }));
     }
 
     

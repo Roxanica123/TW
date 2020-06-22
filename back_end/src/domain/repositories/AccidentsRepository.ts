@@ -1,5 +1,5 @@
 import { IAccidentsRepository } from "./IAccidentsRepository";
-import { IHeatMapCoordinates, IBubbleChartPoint, ITableRowData, IChartDataRow } from "../entities";
+import { IHeatMapCoordinates, IBubbleChartPoint, ITableRowData, IChartDataRow, IAccident } from "../entities";
 import { Connection } from "../../persistence";
 import { IEvolutionDate } from "../entities/IEvolutionDate";
 
@@ -8,6 +8,46 @@ export class AccidentsRepository implements IAccidentsRepository {
 
     constructor() {
         this.connection = new Connection();
+    }
+
+    
+    async getAll(): Promise<Array<IAccident> | null> {
+        const query: string = `select * from accidents`;
+        const user: IAccident[] = await this.connection.execute(query);
+        if (user.length === 0)
+            return null;
+        return user;
+    }
+
+    async removeById (id: number):  Promise<boolean>  {
+
+        try {
+            const query: string = ` delete from users where id = '${id}' `;
+            await this.connection.execute(query);
+        }
+        catch {
+            return false;
+        }
+        return true;
+    }
+    async findById(id: number): Promise<IAccident | null> {
+        const query: string = ` select username, password, email from users where  username = '${id}' `;
+        const accident: IAccident[] = await this.connection.execute(query);
+        if (accident.length === 0)
+            return null;
+        return accident[0];
+    }
+
+    async insertAccident( id: number, source?: string, tmc?: number, severity?: number, start_time?: Date, end_time?: Date, start_latitude?: number, start_longitude?: number, end_latitude?: number, end_longitude?: number, distance?: number, description?: string, number?: number, street?: string, side?: string, city?: string, county?: string, state?: string, zipcode?: string, country?: string, timezone?: string, airport_code?: string, weather_timestamp?: string, temperature?: number, wind_chill?: number, humidity?: number, pressure?: number, visibility?: number, wind_direction?: string, wind_speed?: number, precipitation?: number, weather_condition?: number, amenity?: boolean, bump?: boolean, crossing?: boolean, give_way?: boolean, junction?: boolean, no_exit?: boolean, railway?: boolean, roundabout?: boolean, station?: boolean, stop?: boolean, traffic_calming?: boolean, traffic_signal?: boolean, turning_loop?: boolean, sunrise_sunset?: boolean, civil_twilight?: boolean, nautical_twilight?: boolean, astronomical_twilight?: boolean): Promise<IAccident | null> {
+        const existentAccidnet: IAccident | null = await this.findById(id);
+        if (existentAccidnet !== null)
+            return null;
+        const query: string = ` insert into users ( id, source, tmc, severity, start_time, end_time?, start_latitude, start_longitude, end_latitude, end_longitude, distance, description, number, street, side, city?, county, state, zipcode, country, timezone, airport_code, weather_timestamp, temperature, wind_chill, humidity, pressure, visibility, wind_direction, wind_speed, precipitation, weather_condition, amenity, bump, crossing, give_way, junction, no_exit, railway, roundabout, station, stop, traffic_calming, traffic_signal, turning_loop, sunrise_sunset, civil_twilight, nautical_twilight, astronomical_twilight)
+        values ( ${id}, ${source}, ${tmc}, ${severity}, ${start_time}, ${end_time}, ${start_latitude}, ${start_longitude}, ${end_latitude}, ${end_longitude}, ${distance}, ${description}, ${number}, ${street}, ${side}, ${city}, ${county}, ${state}, ${zipcode}, ${country}, ${timezone}, ${airport_code}, ${weather_timestamp}, ${temperature}, ${wind_chill}, ${humidity}, ${pressure}, ${visibility}, ${wind_direction}, ${wind_speed}, ${precipitation}, ${weather_condition}, ${amenity}, ${bump}, ${crossing}, ${give_way}, ${junction}, ${no_exit}, ${railway}, ${roundabout}, ${station}, ${stop}, ${traffic_calming}, ${traffic_signal}, ${turning_loop}, ${sunrise_sunset}, ${civil_twilight}, ${nautical_twilight}, ${astronomical_twilight})
+        `;
+        await this.connection.execute(query);
+        const createdAccidnet = await this.findById(id);
+        return createdAccidnet;
     }
 
     async getEvolutionDate(filterQuery: string): Promise<IEvolutionDate[]> {
