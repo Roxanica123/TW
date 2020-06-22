@@ -1,4 +1,5 @@
-import { IUserRepository, UserRepository } from "../../domain/repositories"
+import { IUserRepository } from "../../domain/repositories"
+import UserRepository from "../../domain/repositories/UserRepository"
 import { IUser } from "../../domain/entities";
 import { hashSync } from "bcrypt";
 

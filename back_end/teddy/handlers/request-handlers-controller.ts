@@ -4,7 +4,7 @@ import { IncomingMessage } from "http";
 import { parse } from "url";
 
 export class RequestHandlerController {
-    private readonly aggregatedMetadata: AggregatedMetadata[];
+    public readonly aggregatedMetadata: AggregatedMetadata[];
     constructor(aggregatedMetadata: AggregatedMetadata[]) {
         this.aggregatedMetadata = aggregatedMetadata;
     }
