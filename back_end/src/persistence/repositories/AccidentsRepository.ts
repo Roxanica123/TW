@@ -11,7 +11,7 @@ export class AccidentsRepository implements IAccidentsRepository {
         this.connection = new Connection();
     }
     async getFilterOptions(filter: string): Promise<IFilterOption[]> {
-        let query: string = `SELECT DISTINCT ${filter} as "option" FROM ${filter === "point_of_interest" ? 'converted_points_of_interest' : 'accidents'}`;
+        let query: string = `SELECT ${filter} as "option" FROM distinct_${filter} order by 1 ASC`;
         const rows: IFilterOption[] = await this.connection.execute(query);
         return rows;
     }
