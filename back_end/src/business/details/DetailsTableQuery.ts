@@ -1,7 +1,8 @@
 import { ITableRowData, TableRowHeaderDataKeys, TableRowExpandDataKeys } from "../../domain/entities";
-import { IAccidentsRepository, AccidentsRepository } from "../../domain/repositories";
+import { IAccidentsRepository } from "../../domain/repositories";
 import { IDetailsTableData, IDetailsTableRowData } from ".";
 import { QueryBuilder, IAccidentsQuery } from "..";
+import { AccidentsRepository } from "../../persistence/repositories";
 
 export class DetailsTableQuery {
 

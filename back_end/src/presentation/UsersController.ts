@@ -1,14 +1,14 @@
 import { Controller, HttpPost, HttpGet, HttpDelete, HttpPut } from "../../teddy/decorators";
 import { IUser } from "../domain/entities";
-import UserRepository from "../domain/repositories/UserRepository"
 import { Ok, NotFound } from "../../teddy/action-results";
+import { UserRepository } from "../persistence/repositories";
 
 @Controller('/users')
 export class UsersController {
 
     @HttpGet('/')
     public async getAll(_query: any) {
-        let repository = new UserRepository
+        let repository = new UserRepository();
         const users = await repository.getAll()
 
         if (users)
@@ -20,7 +20,7 @@ export class UsersController {
     @HttpPost('/')
     public async post(_query: any, body: IUser) {
        
-        let repository = new UserRepository
+        let repository = new UserRepository();
         const email = body.email
         const password = body.password
         const username = body.username

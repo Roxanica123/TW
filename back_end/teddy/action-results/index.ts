@@ -3,3 +3,5 @@ export * from "./ok";
 export * from "./bad-request";
 export * from "./no-content";
 export * from "./not-found";
+export * from "./unauthorized"
+export * from "./created";

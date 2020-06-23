@@ -1,7 +1,7 @@
 import { IUserRepository } from "../../domain/repositories"
-import UserRepository from "../../domain/repositories/UserRepository"
 import { IUser } from "../../domain/entities";
-//import { hashSync } from "bcrypt"
+import { UserRepository } from "../../persistence/repositories";
+import * as jwt from "jsonwebtoken";
 import * as crypto from "crypto"
 
 const secret = 'secret discret:)';
@@ -14,7 +14,6 @@ export class LoginQuery {
         this.body = body;
     }
     public async execute() {
-        let jwt = require('jsonwebtoken');
         const username = this.body.username;
         const password = this.body.password;
         const hmac = crypto.createHmac('sha256', secret);
@@ -26,13 +25,12 @@ export class LoginQuery {
                 let passwordToken = jwt.sign({ username: user.username, email: user.email }, secret);
                 return passwordToken;
             }
-            else // username bun parola proasta
-            {
+            else {
                 return null;
             }
 
         }
-        else { // nu exista userul
+        else {
             return null;
         }
     }

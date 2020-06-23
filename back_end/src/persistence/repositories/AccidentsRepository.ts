@@ -1,7 +1,8 @@
-import { IAccidentsRepository } from "./IAccidentsRepository";
-import { IHeatMapCoordinates, IBubbleChartPoint, ITableRowData, IChartDataRow, IAccident } from "../entities";
+
 import { Connection } from "../../persistence";
-import { IEvolutionDate } from "../entities/IEvolutionDate";
+import { IAccidentsRepository } from "../../domain/repositories";
+import { IAccident, IEvolutionDate,IHeatMapCoordinates, IBubbleChartPoint, ITableRowData } from "../../domain/entities";
+
 
 export class AccidentsRepository implements IAccidentsRepository {
     private readonly connection: Connection;
@@ -57,42 +58,6 @@ export class AccidentsRepository implements IAccidentsRepository {
         return rows;
     }
 
-    async getAccidentsDaysOfWeekDistribution(filterQuery: string, limit: number): Promise<IChartDataRow[]> {
-        const query: string = `SELECT * , COUNT('^') as count from (SELECT DATE_FORMAT(start_time, '%W') as dayOfWeek FROM accidents ${filterQuery} ORDER BY start_time DESC LIMIT ${limit}) days group by 1`;
-        const rows: IChartDataRow[] = await this.connection.execute(query);
-        return rows;
-    }
-    async getAccidentsPointsOfInterestDistribution(filterQuery: string, limit: number): Promise<IChartDataRow[]> {
-        const query: string = `select *, Count('^') as count from\
-                                    (select if(CONVERT(point_of_interest USING utf8mb4) ='', 'None', point_of_interest) as pointOfInterest 
-                                     from converted_points_of_interest c inner join accidents on c.id = accidents.id ${filterQuery} order by start_time DESC limit ${limit}) as points
-                               group by 1 order by 1`;
-        const rows: IChartDataRow[] = await this.connection.execute(query);
-        return rows;
-    }
-    async getAccidentsSeverityDistribution(filterQuery: string, limit: number): Promise<IChartDataRow[]> {
-        const query: string = `SELECT *, Count('^') as count FROM (select severity from accidents ${filterQuery} order by start_time DESC limit ${limit}) as severity group by 1 order by 1`;
-        const rows: IChartDataRow[] = await this.connection.execute(query);
-        return rows;
-    }
-    async getAccidentsStateDistribution(filterQuery: string, limit: number): Promise<IChartDataRow[]> {
-        const query: string = `SELECT * , Count('^') as count FROM (select state from accidents ${filterQuery} order by start_time DESC limit ${limit}) as states group by 1 order by 1`;
-        const rows: IChartDataRow[] = await this.connection.execute(query);
-        return rows;
-    }
-    async getAccidentsTimeOfDayDistribution(filterQuery: string, limit: number): Promise<IChartDataRow[]> {
-        const query: string = `SELECT * , Count('^') as count FROM
-                               (select getTimeOfDay(start_time) as timeOfDay from accidents ${filterQuery} order by start_time DESC limit ${limit}) as timeOfDay group by 1`;
-        const rows: IChartDataRow[] = await this.connection.execute(query);
-        return rows;
-    }
-    async getAccidentsWeatherCondition(filterQuery: string, limit: number): Promise<IChartDataRow[]> {
-        const query: string = `select * , Count('^') as count from \
-                              (select if(weather_condition='', 'No details', weather_condition) as weatherCondition\
-                              from accidents ${filterQuery} order by start_time DESC limit ${limit} ) as weather group by 1`;
-        const rows: IChartDataRow[] = await this.connection.execute(query);
-        return rows;
-    }
 
     async getAccidentsCoordinates(filterQuery: string, limit: number): Promise<IHeatMapCoordinates[]> {
         const query: string = `SELECT start_lat, start_lng, severity FROM accidents ${filterQuery} ORDER BY start_time DESC LIMIT ` + limit;

@@ -6,15 +6,15 @@ import { DetailsTableQuery } from "../business/details/DetailsTableQuery";
 import { IDetailsTableData } from "../business/details";
 import { IAccidentsQuery } from "../business/IAccidentsQuery";
 import { IEvolutionData, EvolutionQuery } from "../business/evolution";
-import { AccidentsRepository } from "../domain/repositories/AccidentsRepository"
 import { IAccident } from "../domain/entities";
+import { AccidentsRepository } from "../persistence/repositories";
 
 @Controller('/accidents')
 export class AccidentsController {
     
     @HttpGet('/')
     public async getAll(_query: any) {
-        let repository = new AccidentsRepository
+        let repository = new AccidentsRepository();
         const accidents = await repository.getAll()
 
         if (accidents)
