@@ -14,7 +14,6 @@ async function getData() {
   const req = new Request("GET", `http://localhost:5000/accidents/evolution?${FiltersQuery.queryInstance.getQueryString()}`);
   const requestedData = await req.getData();
   const evolutionData = requestedData.evolutionData;
-  console.log(evolutionData);
   evolutionData.forEach(element => {
     dates.push([new Date(element.year, element.month, element.day), element.number]);
   });
@@ -64,7 +63,6 @@ async function drawLogScales() {
     }
     
 window.onload = async function(){
-  console.log("aici");
   Modal.init();
     
     await drawLogScales();

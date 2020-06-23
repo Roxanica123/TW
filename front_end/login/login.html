@@ -121,7 +121,6 @@
         })
           .then(response => response.json())
           .then(body => {
-            console.log(body);
             if (body.token) {
               document.cookie = `jwt=${body.token}`;
             }
@@ -142,7 +141,6 @@
         })
           .then(response => response.json())
           .then(body => {
-            console.log(body);
             if (body.token) {
               document.cookie = `jwt=${body.token}`;
             }

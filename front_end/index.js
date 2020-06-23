@@ -12,7 +12,8 @@ var server = http.createServer(function onRequest(req, res) {
     req.url.includes('.js') ||
     req.url.includes('.html') ||
     req.url.includes('.png') ||
-    req.url.includes('.ico')) {
+    req.url.includes('.ico') ||
+    req.url === "/") {
     serve(req, res, () => { })
   }
   else {
