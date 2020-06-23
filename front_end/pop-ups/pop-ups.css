@@ -12,17 +12,21 @@
 }
 
 .modal-content {
+  display: flex;
+  flex-direction: column;
+  grid-template-columns: 90% 10%;
   background-color: #0f292f;
   margin: 7% auto;
   padding: 20px;
   background-origin: 1px solid #cccccc;
-  width: 35%;
-  height: 60%;
+  width: 60%;
+  height: 80%;
 }
 
 .close {
   color: #cccccc;
   float: right;
+  align-self: flex-start;
   font-size: 90%;
   font-weight: bold;
 }
@@ -37,4 +41,93 @@
 .modal,
 #page-wrapper {
   transition: all 0.4s ease;
+}
+
+title-container {
+  padding-bottom: 10%;
+  display: flex;
+  flex-direction: row;
+  align-content: space-between;
+}
+
+title-container p {
+  padding-left: 5%;
+  text-transform: uppercase;
+  font-family: "Segoe UI", sans-serif;
+  color: #cccccc;
+  width: 95%;
+}
+
+select-container {
+  padding: 0 10%;
+  display: flex;
+  flex-direction: row;
+  align-items: space-between;
+}
+
+selected-container {
+  margin-top: 10px;
+  display: flex;
+  flex-direction: column;
+  align-self: center;
+  height: 20%;
+  width: 90%;
+  overflow: auto;
+}
+options-container {
+  display: flex;
+  flex-wrap: wrap;
+  color: #cccccc;
+  flex-direction: row;
+}
+option-container {
+  display: flex;
+  cursor: pointer;
+  flex-direction: row;
+  align-content: space-between;
+}
+options-container p {
+  font-size: 90%;
+  margin: 5px;
+  padding: 0px;
+  align-self: center;
+}
+close{
+  font-size: 80%;
+  margin:0px;
+  padding:0px;
+  align-self: flex-start;
+}
+select {
+  margin-right: auto;
+  max-width: 50%;
+  overflow: auto;
+  padding: 5px;
+  color: #cccccc;
+  background-color: #0f292f;
+  border: 0.1em solid #cccccc;
+  border-radius: 0em;
+}
+option{
+  max-width: 50%;
+  flex-wrap: wrap;
+  overflow: auto;
+}
+send-wrapper{
+  align-self: flex-end;
+  display: flex;
+  margin-top: auto;
+  flex-direction: column;
+}
+send{
+  align-self: flex-end;
+  z-index: 1;
+  cursor: pointer;
+  border-radius: 0.1em;
+  padding: 0.3em 1em;
+  border: 0.05em solid #cccccc;
+  margin: 0 0.3em 0.3em 0;
+  color: #cccccc;
+  text-align: center;
+  transition: all 0.25s;
 }

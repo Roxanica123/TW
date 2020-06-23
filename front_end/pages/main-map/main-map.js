@@ -3,6 +3,7 @@ import { MapStyle } from "./map-style.js"
 import { Request } from "./../../services/request.js"
 import { FiltersQuery } from "../../services/filters-query.js";
 
+
 window.onload = async (event) => {
     Modal.init();
     insertMapScript();

@@ -1,3 +1,5 @@
+import { FiltersPopUp } from "./pop-ups/filters-pop-up.js";
+
 export class Modal {
   static init() {
     const modalFilter = document.getElementById("modal-filter");
@@ -8,9 +10,14 @@ export class Modal {
     const modalDownload = document.getElementById("modal-download");
     const pageWrapper = document.getElementById("page-wrapper");
 
-    buttonFilter.onclick = function () {
+    buttonFilter.onclick = async function () {
       modalFilter.style.display = "block";
-      pageWrapper.style.webkitFilter = "blur(5px) grayscale(50%)";
+      if (pageWrapper !== null)
+        pageWrapper.style.webkitFilter = "blur(5px) grayscale(50%)";
+      const filter = new FiltersPopUp();
+      await filter.initAvailableFilters();
+      await filter.init();
+
     };
 
     buttonDownload.onclick = function () {
@@ -43,3 +50,5 @@ export class Modal {
     };
   }
 }
+
+

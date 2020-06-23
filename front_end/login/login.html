@@ -123,6 +123,7 @@
           .then(body => {
             if (body.token) {
               document.cookie = `jwt=${body.token}`;
+              console.log(document.cookie);
             }
           })
       }
@@ -143,6 +144,7 @@
           .then(body => {
             if (body.token) {
               document.cookie = `jwt=${body.token}`;
+              console.log(document.cookie);
             }
           })
       }
