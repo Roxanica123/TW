@@ -1,7 +1,7 @@
-
 import { Connection } from "../../persistence";
 import { IAccidentsRepository } from "../../domain/repositories";
 import { IAccident, IEvolutionDate,IHeatMapCoordinates, IBubbleChartPoint, ITableRowData } from "../../domain/entities";
+import { IFilterOption } from "../../domain/entities/IFilterOption";
 
 
 export class AccidentsRepository implements IAccidentsRepository {
@@ -9,6 +9,11 @@ export class AccidentsRepository implements IAccidentsRepository {
 
     constructor() {
         this.connection = new Connection();
+    }
+    async getFilterOptions(filter: string): Promise<IFilterOption[]> {
+        let query: string = `SELECT DISTINCT ${filter} as "option" FROM ${filter === "point_of_interest" ? 'converted_points_of_interest' : 'accidents'}`;
+        const rows: IFilterOption[] = await this.connection.execute(query);
+        return rows;
     }
 
     
@@ -39,7 +44,7 @@ export class AccidentsRepository implements IAccidentsRepository {
         return accident[0];
     }
 
-    async insertAccident( id: number, source?: string, tmc?: number, severity?: number, start_time?: Date, end_time?: Date, start_latitude?: number, start_longitude?: number, end_latitude?: number, end_longitude?: number, distance?: number, description?: string, number?: number, street?: string, side?: string, city?: string, county?: string, state?: string, zipcode?: string, country?: string, timezone?: string, airport_code?: string, weather_timestamp?: string, temperature?: number, wind_chill?: number, humidity?: number, pressure?: number, visibility?: number, wind_direction?: string, wind_speed?: number, precipitation?: number, weather_condition?: number, amenity?: boolean, bump?: boolean, crossing?: boolean, give_way?: boolean, junction?: boolean, no_exit?: boolean, railway?: boolean, roundabout?: boolean, station?: boolean, stop?: boolean, traffic_calming?: boolean, traffic_signal?: boolean, turning_loop?: boolean, sunrise_sunset?: boolean, civil_twilight?: boolean, nautical_twilight?: boolean, astronomical_twilight?: boolean): Promise<IAccident | null> {
+    async insertAccident( id: number, source?: string, tmc?: number, severity?: number, start_time?: Date, end_time?: Date, start_latitude?: number, start_longitude?: number, end_latitude?: number, end_longitude?: number, distance?: number, description?: string, number?: number, street?: string, side?: string, city?: string, county?: string, state?: string, zipcode?: string, country?: string, timezone?: string, airport_code?: string, weather_timestamp?: string, temperature?: number, wind_chill?: number, humidity?: number, pressure?: number, visibility?: number, wind_direction?: string, wind_speed?: number, precipitation?: number, weather_condition?: number, amenity?: boolean, bump?: boolean, crossing?: boolean, give_way?: boolean, junction?: boolean, no_exit?: boolean, railway?: boolean, roundabout?: boolean, station?: boolean, stop?: boolean, traffic_calming?: boolean, traffic_signal?: boolean, turning_loop?: boolean, sunrise_sunset?: string, civil_twilight?: string, nautical_twilight?: string, astronomical_twilight?: string): Promise<IAccident | null> {
         const existentAccidnet: IAccident | null = await this.findById(id);
         if (existentAccidnet !== null)
             return null;

@@ -1,4 +1,5 @@
 import { AccidentsQueryKeys, IAccidentsFilterQuery } from "./IAccidentsQuery";
+import { IMultiselect } from "./IMultiselect";
 
 export class QueryBuilder {
     private point_of_interest?: string;
@@ -7,6 +8,7 @@ export class QueryBuilder {
     private state?: string;
     private severity?: number;
     private weather_condition?: any;
+    private multiselect?: IMultiselect;
     constructor(query: IAccidentsFilterQuery) {
         if (query === undefined) return;
         AccidentsQueryKeys.forEach(key => {
@@ -29,6 +31,21 @@ export class QueryBuilder {
         if (this.weather_condition !== undefined) {
             query += ` AND accidents.weather_condition= '${this.weather_condition}' `;
         }
+        if (this.multiselect !== undefined) {
+            Object.getOwnPropertyNames(this.multiselect).forEach(key => {
+                const options: any[] | undefined = this.multiselect ? this.multiselect[<keyof IMultiselect>key] : [];
+                if (options !== undefined) {
+                    if (key !== "severity" && key != "tmc") {
+                        query += ` AND accidents.${key} in (${options.map(element => `'${element}'`)}) `;
+                    }
+                    else {
+                        query += ` AND accidents.${key} in (${options}) `;
+                    }
+                }
+            })
+
+        }
+
         return query;
     }
 }
