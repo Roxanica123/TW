@@ -1,3 +1,3 @@
 export * from "./IAuthBody"
-export * from "./FindUserQuery"
-export * from "./InsertUserCommand"
+export * from "./LoginQuery"
+export * from "./RegisterQuery"
