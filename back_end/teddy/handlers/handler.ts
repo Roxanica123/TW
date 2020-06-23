@@ -5,8 +5,8 @@ import { HttpActionResult, BadRequest } from "../action-results";
 import { RequestHandler } from "./request-handler";
 
 export class Handler {
-    public static handlerInstance: Handler;
-    public readonly requestHandlersController: RequestHandlerController;
+    private static handlerInstance: Handler;
+    private readonly requestHandlersController: RequestHandlerController;
 
     private constructor() {
         this.requestHandlersController = new RequestHandlerController(MetadataManager.aggregateMetadata());
