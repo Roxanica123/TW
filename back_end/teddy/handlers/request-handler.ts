@@ -5,12 +5,16 @@ import { parse } from "url";
 export class RequestHandler {
     private readonly constructorFunction: any;
     private readonly methodName: string;
+    private readonly requiresAuth: boolean;
 
-    constructor(constructorFunction: Function, methodName: string) {
+    constructor(constructorFunction: Function, methodName: string, requiresAuth: boolean) {
         this.constructorFunction = constructorFunction;
         this.methodName = methodName;
+        this.requiresAuth = requiresAuth;
     }
-
+    public isAuthRequired(): boolean {
+        return this.requiresAuth;
+    }
 
     public async execute(request: IncomingMessage): Promise<HttpActionResult> {
         const controller: any = new this.constructorFunction();
