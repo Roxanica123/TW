@@ -1,39 +1,35 @@
 import { Request } from "./../services/request.js"
 import { FiltersQuery } from "../services/filters-query.js";
 export class FiltersPopUp {
-    availableFilters = new Map();
-    filerOptions;
-    selectedOption = "None";
-    constructor() {
-        const appplyButton = document.querySelector("send");
-        appplyButton.addEventListener('click', () => { this.applyFilters(); });
-    }
-    async init() {
+    static availableFilters = new Map();
+    static filerOptions;
+    static selectedOption = "None";
+    static async init() {
         const container = document.querySelector('select-container');
         if (container !== null)
             container.remove();
-        this.insertSelect();
-        this.insertSelected();
+        FiltersPopUp.insertSelect();
+        FiltersPopUp.insertSelected();
     }
-    async initAvailableFilters() {
+    static async initAvailableFilters() {
         const req = new Request("GET", `http://localhost:5000/accidents/available-filers`);
         const reqData = await req.getData();
-        reqData.available_filters.forEach(filter => this.availableFilters.set(filter, []));
-        this.availableFilters.set("None", []);
+        reqData.available_filters.forEach(filter => FiltersPopUp.availableFilters.set(filter, []));
+        FiltersPopUp.availableFilters.set("None", []);
     }
-    async initFilterOptions() {
-        const req = new Request("GET", `http://localhost:5000/accidents/filter-options?filter=${this.selectedOption}`);
+    static async initFilterOptions() {
+        const req = new Request("GET", `http://localhost:5000/accidents/filter-options?filter=${FiltersPopUp.selectedOption}`);
         const reqData = await req.getData();
-        this.filerOptions = reqData.options;
-        this.filerOptions = this.filerOptions.map(option => option.option);
+        FiltersPopUp.filerOptions = reqData.options;
+        FiltersPopUp.filerOptions = FiltersPopUp.filerOptions.map(option => option.option);
     }
-    async insertSelect() {
+    static async insertSelect() {
         const modal = document.querySelector('title-container');
         const container = document.createElement('select-container');
         let select = document.createElement('select');
-        Array.from(this.availableFilters.keys()).forEach(filter => {
+        Array.from(FiltersPopUp.availableFilters.keys()).forEach(filter => {
             const option = document.createElement('option');
-            if (this.selectedOption === filter) {
+            if (FiltersPopUp.selectedOption === filter) {
                 option.setAttribute('selected', 'selected');
             }
             option.setAttribute('value', filter);
@@ -42,15 +38,15 @@ export class FiltersPopUp {
 
         })
         select.addEventListener('change', (event) => {
-            this.updateSelectedOption(event.target.value);
-            this.init();
+            FiltersPopUp.updateSelectedOption(event.target.value);
+            FiltersPopUp.init();
         });
         container.appendChild(select);
 
-        if (this.selectedOption !== "None") {
-            await this.initFilterOptions();
+        if (FiltersPopUp.selectedOption !== "None") {
+            await FiltersPopUp.initFilterOptions();
             select = document.createElement('select');
-            this.filerOptions.forEach(filterOption => {
+            FiltersPopUp.filerOptions.forEach(filterOption => {
                 const option = document.createElement('option');
                 option.setAttribute('value', filterOption);
                 option.innerText = filterOption;
@@ -58,21 +54,21 @@ export class FiltersPopUp {
 
             })
             select.addEventListener('change', (event) => {
-                this.addOption(event.target.value);
+                FiltersPopUp.addOption(event.target.value);
             });
             container.appendChild(select);
         }
         modal.insertAdjacentElement('afterend', container);
     }
 
-    insertSelected() {
-        const map = this.availableFilters;
+    static insertSelected() {
+        const map = FiltersPopUp.availableFilters;
         const modal = document.querySelector('select-container');
         const existentContainer = document.querySelector('selected-container');
         if (existentContainer !== null)
             existentContainer.remove();
         const container = document.createElement('selected-container');
-        this.availableFilters.forEach((value, key) => {
+        FiltersPopUp.availableFilters.forEach((value, key) => {
             if (value.length !== 0) {
                 const optionsContainer = document.createElement("options-container");
                 const filter = document.createElement("p");
@@ -98,17 +94,17 @@ export class FiltersPopUp {
         if (modal !== null)
             modal.insertAdjacentElement('afterend', container);
     }
-    updateSelectedOption(option) {
-        this.selectedOption = option;
+    static updateSelectedOption(option) {
+        FiltersPopUp.selectedOption = option;
     }
 
-    addOption(option) {
-        this.availableFilters.get(this.selectedOption).push(option);
-        this.insertSelected();
+    static addOption(option) {
+        FiltersPopUp.availableFilters.get(FiltersPopUp.selectedOption).push(option);
+        FiltersPopUp.insertSelected();
     }
-    applyFilters() {
+    static applyFilters() {
         let multiselectObject = new Object();
-        this.availableFilters.forEach((value, key) => {
+        FiltersPopUp.availableFilters.forEach((value, key) => {
             if (value.length > 0) {
                 multiselectObject[key] = value;
             }

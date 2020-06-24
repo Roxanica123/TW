@@ -14,9 +14,14 @@ export class Modal {
       modalFilter.style.display = "block";
       if (pageWrapper !== null)
         pageWrapper.style.webkitFilter = "blur(5px) grayscale(50%)";
-      const filter = new FiltersPopUp();
-      await filter.initAvailableFilters();
-      await filter.init();
+      await FiltersPopUp.initAvailableFilters();
+      await FiltersPopUp.init();
+      const appplyButton = document.querySelector("send");
+      appplyButton.addEventListener('click', () => {
+        FiltersPopUp.applyFilters();
+        closeFilter['onclick']();
+        window['applyFilters']();
+      });
 
     };
 
@@ -27,7 +32,8 @@ export class Modal {
 
     closeFilter.onclick = function () {
       modalFilter.style.display = "none";
-      pageWrapper.style.webkitFilter = "none";
+      if (pageWrapper !== null)
+        pageWrapper.style.webkitFilter = "none";
 
     };
 

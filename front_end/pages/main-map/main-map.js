@@ -8,7 +8,9 @@ window.onload = async (event) => {
     Modal.init();
     insertMapScript();
 };
-
+window.applyFilters = async function apply() {
+    window['initMap']();
+}
 
 
 window.initMap = async function initMap() {

@@ -9,6 +9,10 @@ window.onload = (event) => {
     Modal.init();
 };
 
+window.applyFilters = async function apply() {
+    drawCharts();
+}
+
 window.drawCharts = function drawCharts() {
     ChartsManager.drawCharts();
 }
