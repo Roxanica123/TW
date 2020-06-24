@@ -4,6 +4,9 @@ export class FiltersPopUp {
     static availableFilters = new Map();
     static filerOptions;
     static selectedOption = "None";
+    static reset() {
+        FiltersPopUp.availableFilters = new Map();
+    }
     static async init() {
         const container = document.querySelector('select-container');
         if (container !== null)

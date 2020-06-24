@@ -1,4 +1,5 @@
 import { FiltersPopUp } from "./pop-ups/filters-pop-up.js";
+import { FiltersQuery } from "./services/filters-query.js";
 
 export class Modal {
   static init() {
@@ -9,6 +10,7 @@ export class Modal {
     const buttonDownload = document.getElementById("download-button");
     const modalDownload = document.getElementById("modal-download");
     const pageWrapper = document.getElementById("page-wrapper");
+    const reset = document.querySelector("#reset");
 
     buttonFilter.onclick = async function () {
       modalFilter.style.display = "block";
@@ -24,6 +26,12 @@ export class Modal {
       });
 
     };
+
+    reset.onclick = async function () {
+      FiltersPopUp.reset();
+      FiltersQuery.queryInstance.reset();
+      window['applyFilters']();
+    }
 
     buttonDownload.onclick = function () {
       modalDownload.style.display = "block";
