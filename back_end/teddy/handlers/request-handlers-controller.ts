@@ -17,7 +17,7 @@ export class RequestHandlerController {
             const method: MethodMetadata | undefined = aggregatedMetadata.methods
                 .find(method => ((aggregatedMetadata.controller.route + method.route) === path) && method.httpMethod === httpMethod);
 
-            return method === undefined ? method : new RequestHandler(aggregatedMetadata.controller.constructorFunction, method.methodName);
+            return method === undefined ? method : new RequestHandler(aggregatedMetadata.controller.constructorFunction, method.methodName, method.requiresAuth);
         }).find(result => result !== undefined);
     }
 }

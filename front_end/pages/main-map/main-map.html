@@ -6,7 +6,9 @@
   <meta name="viewport"
     content="width=device-width, initial-scale=1.0" />
   <title>US Accidents Smart Visualizer</title>
-  <link rel='shortcut icon' type='image/x-icon' href='./images/favicon.ico' />
+  <link rel='shortcut icon'
+    type='image/x-icon'
+    href='./images/favicon.ico' />
   <link rel="stylesheet"
     href="./styles.css" />
   <link rel="stylesheet"
@@ -38,10 +40,10 @@
     <nav class="footer-nav">
       <ul>
         <li><a href="../../login/login.html"
-          id="login-button">Login</a></li>
+            id="login-button">Login</a></li>
         <li><a href="#"
             id="fillter-button">Filters</a></li>
-        <li><a href="#">Reset</a></li>
+        <li><a id ="reset" href="#">Reset</a></li>
         <li><a href="#"
             id="download-button">Download</a></li>
       </ul>
@@ -52,8 +54,14 @@
   <div class="modal"
     id="modal-filter">
     <div class="modal-content">
-      <span class="close">&times;</span>
-      <p>Aici punem fielduri.</p>
+      <title-container>
+        <p>Filters</p>
+        <span class="close">&times;</span>
+      </title-container>
+
+      <send-wrapper>
+        <send>Apply</send>
+      </send-wrapper>
     </div>
   </div>
 

@@ -20,7 +20,7 @@ export class LoginQuery {
         hmac.update(password);
         const user = await this.userRepository.findByUsername(username)
         if (user) {
-            if (hmac.digest('hex') === user.password) // combinatie buna
+            if (hmac.digest('hex') === user.password)
             {
                 let passwordToken = jwt.sign({ username: user.username, email: user.email }, secret);
                 return passwordToken;

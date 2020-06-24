@@ -5,6 +5,7 @@ export interface IAccidentsFilterQuery {
     state?: string;
     severity?: number;
     weather_condition?: string;
+    multiselect?: JSON;
 }
 export interface IAccidentsQuery extends IAccidentsFilterQuery {
     limit: number;
@@ -12,4 +13,4 @@ export interface IAccidentsQuery extends IAccidentsFilterQuery {
     pageLimit: number;
 }
 
-export const AccidentsQueryKeys: (keyof IAccidentsFilterQuery)[] = ["point_of_interest", "start_date", "end_date", "state", "severity", "weather_condition"];
+export const AccidentsQueryKeys: (keyof IAccidentsFilterQuery)[] = ["point_of_interest", "start_date", "end_date", "state", "severity", "weather_condition", "multiselect"];

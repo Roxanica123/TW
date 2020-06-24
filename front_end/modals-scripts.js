@@ -1,3 +1,6 @@
+import { FiltersPopUp } from "./pop-ups/filters-pop-up.js";
+import { FiltersQuery } from "./services/filters-query.js";
+
 export class Modal {
   static init() {
     const modalFilter = document.getElementById("modal-filter");
@@ -7,11 +10,28 @@ export class Modal {
     const buttonDownload = document.getElementById("download-button");
     const modalDownload = document.getElementById("modal-download");
     const pageWrapper = document.getElementById("page-wrapper");
+    const reset = document.querySelector("#reset");
 
-    buttonFilter.onclick = function () {
+    buttonFilter.onclick = async function () {
       modalFilter.style.display = "block";
-      pageWrapper.style.webkitFilter = "blur(5px) grayscale(50%)";
+      if (pageWrapper !== null)
+        pageWrapper.style.webkitFilter = "blur(5px) grayscale(50%)";
+      await FiltersPopUp.initAvailableFilters();
+      await FiltersPopUp.init();
+      const appplyButton = document.querySelector("send");
+      appplyButton.addEventListener('click', () => {
+        FiltersPopUp.applyFilters();
+        closeFilter['onclick']();
+        window['applyFilters']();
+      });
+
     };
+
+    reset.onclick = async function () {
+      FiltersPopUp.reset();
+      FiltersQuery.queryInstance.reset();
+      window['applyFilters']();
+    }
 
     buttonDownload.onclick = function () {
       modalDownload.style.display = "block";
@@ -20,7 +40,8 @@ export class Modal {
 
     closeFilter.onclick = function () {
       modalFilter.style.display = "none";
-      pageWrapper.style.webkitFilter = "none";
+      if (pageWrapper !== null)
+        pageWrapper.style.webkitFilter = "none";
 
     };
 
@@ -43,3 +64,5 @@ export class Modal {
     };
   }
 }
+
+

@@ -1,5 +1,6 @@
 import { start } from "../teddy/server-start";
 import { AccidentsController, AuthController } from "./presentation";
+import { authenticate } from "./business/auth/Authenticate";
 
 
 start({
@@ -15,5 +16,6 @@ start({
         waitForConnections: true,
         connectionLimit: 150,
         queueLimit: 0
-    }
+    },
+    authFunction: authenticate
 });

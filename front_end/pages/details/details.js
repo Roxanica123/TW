@@ -6,6 +6,11 @@ window.onload = (event) => {
     Modal.init();
 };
 
+window.applyFilters = async function apply() {
+    window['initTable']();
+}
+
+
 window.initTable = function initTable() {
     new Table().initTable();
 }

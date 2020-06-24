@@ -8,8 +8,8 @@ import { Connection } from "../src/persistence";
 
 
 export function start(app: Application): void {
-    
-    Handler.init();
+
+    Handler.init(app.authFunction);
     TeddyConnection.init(app.databaseOptions);
     Database.init(new Connection(), '...', 'accidents');
     const server: http.Server = http.createServer((req: http.IncomingMessage, res: http.ServerResponse) => {

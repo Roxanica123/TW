@@ -6,7 +6,7 @@ import { UserRepository } from "../persistence/repositories";
 @Controller('/users')
 export class UsersController {
 
-    @HttpGet('/')
+    @HttpGet('/', true)
     public async getAll(_query: any) {
         let repository = new UserRepository();
         const users = await repository.getAll()
@@ -17,7 +17,7 @@ export class UsersController {
             return new NotFound(JSON.stringify({ 'message': 'Could not get users' }));
     }
 
-    @HttpPost('/')
+    @HttpPost('/', true)
     public async post(_query: any, body: IUser) {
        
         let repository = new UserRepository();
@@ -34,7 +34,7 @@ export class UsersController {
     }
 
     
-    @HttpPut('/')
+    @HttpPut('/', true)
     public async put(_query: any, body: IUser) {
 
         let repository = new UserRepository
@@ -47,7 +47,7 @@ export class UsersController {
     }
 
     
-    @HttpDelete('/')
+    @HttpDelete('/', true)
     public async delete(_query: any, body: IUser) {
        
         let repository = new UserRepository

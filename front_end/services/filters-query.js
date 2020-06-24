@@ -6,14 +6,16 @@ export class FiltersQuery {
     state;
     severity;
     weather_condition;
+    multiselect;
     constructor() {
-        this.limit = 10;
+        this.limit = 2000;
         this.point_of_interest = undefined;
         this.start_date = undefined;
         this.end_date = undefined;
         this.state = undefined;
         this.severity = undefined;
         this.weather_condition = undefined;
+        this.multiselect = undefined;
     }
     static queryInstance = new FiltersQuery();
 
@@ -35,6 +37,9 @@ export class FiltersQuery {
             queryString += `&severity=${escape(this.severity)}`;
         if (this.weather_condition !== undefined)
             queryString += `&weather_condition=${escape(this.weather_condition)}`;
+        if (this.multiselect !== undefined) {
+            queryString += `&multiselect=${escape(JSON.stringify(this.multiselect))}`
+        }
         return queryString;
     }
 
@@ -59,6 +64,10 @@ export class FiltersQuery {
     }
     setWeatherCondition(weather_condition) {
         this.weather_condition = weather_condition;
+    }
+    setMultiselect(multiselect) {
+        this.multiselect = multiselect;
+        console.log(this.getQueryString());
     }
 
 

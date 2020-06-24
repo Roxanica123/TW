@@ -1,7 +1,6 @@
 import { IUserRepository } from "../../domain/repositories"
 import { IUser } from "../../domain/entities";
 import { UserRepository } from "../../persistence/repositories";
-//import { hashSync } from "bcrypt";
 import * as crypto from "crypto";
 import * as jwt from "jsonwebtoken";
 

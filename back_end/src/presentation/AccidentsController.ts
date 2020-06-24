@@ -6,12 +6,18 @@ import { DetailsTableQuery } from "../business/details/DetailsTableQuery";
 import { IDetailsTableData } from "../business/details";
 import { IAccidentsQuery } from "../business/IAccidentsQuery";
 import { IEvolutionData, EvolutionQuery } from "../business/evolution";
-import { IAccident } from "../domain/entities";
+import { IAvailableFiltersData } from "../business/filters/IAvailableFiltersData";
+import { AvailableFilters } from "../business/filters/AvailableFilters";
+import { IFilterQuery } from "../business/IFilterQuery";
+import { IOptionsData } from "../business/filters/IOptionsData";
+import { FilterOptionsQuery } from "../business/filters/FilterOptionsQuery";
+import { QueryBuilder } from "../business";
 import { AccidentsRepository } from "../persistence/repositories";
+import { IAccident } from "../domain/entities";
 
 @Controller('/accidents')
 export class AccidentsController {
-    
+
     @HttpGet('/')
     public async getAll(_query: any) {
         let repository = new AccidentsRepository();
@@ -25,9 +31,9 @@ export class AccidentsController {
 
     @HttpPost('/')
     public async post(_query: any, body: IAccident) {
-       
+
         let repository = new AccidentsRepository();
-        const accident = await repository.insertAccident( body.id, body.source, body.tmc, body.severity, body.start_time, body.end_time, body.start_latitude, body.start_longitude, body.end_latitude, body.end_longitude, body.distance, body.description, body.number, body.street, body.side, body.city, body.county, body.state, body.zipcode, body.country, body.timezone, body.airport_code, body.weather_timestamp, body.temperature, body.wind_chill, body.humidity, body.pressure, body.visibility, body.wind_direction, body.wind_speed, body.precipitation, body.weather_condition, body.amenity, body.bump, body.crossing, body.give_way, body.junction, body.no_exit, body.railway, body.roundabout, body.station, body.stop, body.traffic_calming, body.traffic_signal, body.turning_loop, body.sunrise_sunset, body.civil_twilight, body.nautical_twilight, body.astronomical_twilight);
+        const accident = await repository.insertAccident(body.id, body.source, body.tmc, body.severity, body.start_time, body.end_time, body.start_lat, body.start_lng, body.end_lat, body.end_lng, body.distance, body.description, body.number, body.street, body.side, body.city, body.county, body.state, body.zipcode, body.country, body.timezone, body.airport_code, body.weather_timestamp, body.temperature, body.wind_chill, body.humidity, body.pressure, body.visibility, body.wind_direction, body.wind_speed, body.precipitation, body.weather_condition, body.amenity, body.bump, body.crossing, body.give_way, body.junction, body.no_exit, body.railway, body.roundabout, body.station, body.stop, body.traffic_calming, body.traffic_signal, body.turning_loop, body.sunrise_sunset, body.civil_twilight, body.nautical_twilight, body.astronomical_twilight);
 
         if (accident)
             return new Ok(JSON.stringify({ 'massage': 'New accident inserted' }));
@@ -37,7 +43,7 @@ export class AccidentsController {
 
     @HttpDelete('/')
     public async delete(_query: any, body: IAccident) {
-       
+
         let repository = new AccidentsRepository
         const id = body.id;
         const user = await repository.removeById(id)
@@ -76,8 +82,21 @@ export class AccidentsController {
         const result: IDetailsTableData = await new DetailsTableQuery(query).execute();
         return new Ok(JSON.stringify(result));
     }
-
-
+    @HttpGet("/available-filers")
+    public async getAvailableFilters(): Promise<HttpActionResult> {
+        const result: IAvailableFiltersData = { available_filters: new AvailableFilters().getFilters() };
+        return new Ok(JSON.stringify(result));
+    }
+    @HttpGet("/filter-options")
+    public async getFilterOptions(query: IFilterQuery): Promise<HttpActionResult> {
+        const result: IOptionsData = await new FilterOptionsQuery(query).execute();
+        return new Ok(JSON.stringify(result));
+    }
+    @HttpGet("/test")
+    public async test(query: IAccidentsQuery): Promise<HttpActionResult> {
+        const result = new QueryBuilder(query).build();
+        return new Ok(JSON.stringify(result));
+    }
     @HttpPost()
     public postAccidents(): HttpActionResult {
         const result: HttpActionResult = new Ok();

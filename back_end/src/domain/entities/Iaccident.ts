@@ -5,10 +5,10 @@ export interface IAccident {
     severity?: number;
     start_time?: Date;
     end_time?: Date;
-    start_latitude?: number;
-    start_longitude?: number;
-    end_latitude?: number;
-    end_longitude?: number;
+    start_lat?: number;
+    start_lng?: number;
+    end_lat?: number;
+    end_lng?: number;
     distance?: number;
     description?: string;
     number?: number;
@@ -31,6 +31,7 @@ export interface IAccident {
     wind_speed?: number;
     precipitation?: number;
     weather_condition?: number;
+    point_of_interest?: string;
     amenity?: boolean;
     bump?: boolean;
     crossing?: boolean;
@@ -44,8 +45,8 @@ export interface IAccident {
     traffic_calming?: boolean;
     traffic_signal?: boolean;
     turning_loop?: boolean;
-    sunrise_sunset?: boolean;
-    civil_twilight?: boolean;
-    nautical_twilight?: boolean;
-    astronomical_twilight?: boolean;
+    sunrise_sunset?: string;
+    civil_twilight?: string;
+    nautical_twilight?: string;
+    astronomical_twilight?: string;
 }
